@@ -58,9 +58,15 @@ class Firebase {
 
   /* User API */
 
-  user = (uid) => this.db.doc(`users/${uid}`);
+  user = (uid) => this.db.doc(`userdata/${uid}`);
 
-  users = () => this.db.collection("users");
+  userdata = () => this.db.collection("users");
+
+  /* Recipe API */
+
+  recipes = () => this.db.collection("recipes");
+
+  recipe = (recipeId) => this.db.doc(`recipes/${recipeId}`);
 }
 
 export default Firebase;
