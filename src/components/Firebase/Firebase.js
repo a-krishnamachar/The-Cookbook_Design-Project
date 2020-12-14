@@ -111,6 +111,13 @@ class Firebase {
       cookbook: Firebase.firestore.FieldValue.arrayRemove(rid)
     })
   }
+  userdata = () => this.db.collection("users");
+
+  /* Recipe API */
+
+  recipes = () => this.db.collection("recipes");
+
+  recipe = (recipeId) => this.db.doc(`recipes/${recipeId}`);
 }
 
 export default Firebase;
