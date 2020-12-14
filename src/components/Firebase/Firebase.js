@@ -58,9 +58,59 @@ class Firebase {
 
   /* User API */
 
-  user = (uid) => this.db.doc(`users/${uid}`);
+  user = (uid) => this.db.doc(`userdata/${uid}`);
 
-  users = () => this.db.collection("users");
+  users = () => this.db.collection("userdata");
+
+  /* Recipe API */
+
+  recipe = (rid) => this.db.doc(`recipes/${rid}`);
+
+  recipes = () => this.db.collection("recipes");
+
+  addRecipe(fields){
+    //Create the empty recipe document
+    var newRecipe = this.db.collection("recipes").doc();
+    //Add data that was prepared beforehand
+    newRecipe.set(fields);
+
+    //Add the new recipe's id to the userdata cookbook field
+    this.db.collection("userdata").doc(`userdata/${fields.creator}`).update({
+      cookbook: Firebase.firestore.FieldValue.arrayUnion(newRecipe.getId())
+    });
+  }
+
+  updateRecipe = (rid,fields) => this.recipe(rid).set(fields);
+
+  addFriend(uid1,uid2){
+    this.user(uid1).update({
+      friends: Firebase.firestore.FieldValue.arrayUnion(uid2)
+    });
+    this.user(uid2).update({
+      friends: Firebase.firestore.FieldValue.arrayUnion(uid1)
+    });
+  }
+
+  removeFriend(uid1,uid2){
+    this.user(uid1).update({
+      friends: Firebase.firestore.FieldValue.arrayRemove(uid2)
+    });
+    this.user(uid2).update({
+      friends: Firebase.firestore.FieldValue.arrayRemove(uid1)
+    });
+  }
+
+  removeRecipe(rid){
+    var uid;
+    this.recipe(rid).get()
+      .then(doc=>{
+        uid = doc.data().creator;
+      });
+    this.recipe(rid).delete()
+    this.user(uid).update({
+      cookbook: Firebase.firestore.FieldValue.arrayRemove(rid)
+    })
+  }
 }
 
 export default Firebase;
