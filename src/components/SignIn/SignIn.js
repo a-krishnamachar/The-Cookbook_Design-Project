@@ -13,6 +13,7 @@ import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
 import Button from "@material-ui/core/Button";
 import { withFirebase } from "../Firebase";
+import { BtnNoneOutLine, Header } from "../../styles/styled";
 
 import { compose } from "recompose";
 
@@ -62,10 +63,9 @@ class SignIn extends Component {
   render() {
     const { email, password, error } = this.state;
     return (
-      <div id="signin">
-        <h2> Sign In </h2>
-
-        <Grid container spacing={1} alignItems="flex-end">
+      <div id="signin"  justify="center">
+        <Header> Sign In </Header>
+        <Grid container spacing={1} alignItems="flex-end"  justify="center">
           <Grid item>
             <EmailIcon />
           </Grid>
@@ -77,10 +77,12 @@ class SignIn extends Component {
               onChange={this.onChange}
               value={email}
               fullWidth
+              variant="outlined"
+              size="small"
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end"  justify="center">
           <Grid item>
             <LockIcon />
           </Grid>
@@ -93,20 +95,22 @@ class SignIn extends Component {
               onChange={this.onChange}
               value={password}
               fullWidth
+              variant="outlined"
+              size="small"
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Button
+        <Grid container spacing={1} alignItems="flex-end"  justify="center">
+          <BtnNoneOutLine
             onClick={this.onSubmit}
             disabled={!email || !password}
             variant="contained"
             color="primary"
           >
             Sign In
-          </Button>
+          </BtnNoneOutLine>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
           Don't have an account?
           <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
         </Grid>
