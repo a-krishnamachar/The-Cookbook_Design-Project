@@ -1,10 +1,11 @@
 import React from "react";
+import { Header } from "../../styles/styled";
 
 class Friends extends React.Component {
   render() {
     return (
       <div>
-        <h1> Friends </h1>
+        <Header> Friends </Header>
       </div>
     );
   }

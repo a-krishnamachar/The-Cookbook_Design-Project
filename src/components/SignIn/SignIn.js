@@ -11,11 +11,15 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import EmailIcon from "@material-ui/icons/Email";
 import LockIcon from "@material-ui/icons/Lock";
-import Button from "@material-ui/core/Button";
 import { withFirebase } from "../Firebase";
-import { BtnNoneOutLine, Header } from "../../styles/styled";
+import {
+  BtnNoneOutLine,
+  Header,
+  IconAlign,
+  GeneralText,
+} from "../../styles/styled";
 
-import { compose } from "recompose";
+import { branch, compose } from "recompose";
 
 const INITIAL_STATE = {
   email: "",
@@ -63,12 +67,14 @@ class SignIn extends Component {
   render() {
     const { email, password, error } = this.state;
     return (
-      <div id="signin"  justify="center">
+      <div id="signin" justify="center">
         <Header> Sign In </Header>
-        <Grid container spacing={1} alignItems="flex-end"  justify="center">
-          <Grid item>
-            <EmailIcon />
-          </Grid>
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
+          <IconAlign>
+            <Grid item>
+              <EmailIcon fontSize="large" />
+            </Grid>
+          </IconAlign>
           <Grid item>
             <TextField
               id="email"
@@ -79,13 +85,18 @@ class SignIn extends Component {
               fullWidth
               variant="outlined"
               size="small"
+              margin="normal"
+              InputProps={{ style: { fontSize: 14 } }}
+              InputLabelProps={{ style: { fontSize: 12 } }}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end"  justify="center">
-          <Grid item>
-            <LockIcon />
-          </Grid>
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
+          <IconAlign>
+            <Grid item>
+              <LockIcon fontSize="large" />
+            </Grid>
+          </IconAlign>
           <Grid item>
             <TextField
               id="password"
@@ -97,10 +108,13 @@ class SignIn extends Component {
               fullWidth
               variant="outlined"
               size="small"
+              margin="normal"
+              InputProps={{ style: { fontSize: 14 } }}
+              InputLabelProps={{ style: { fontSize: 12 } }}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end"  justify="center">
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
           <BtnNoneOutLine
             onClick={this.onSubmit}
             disabled={!email || !password}
@@ -111,8 +125,10 @@ class SignIn extends Component {
           </BtnNoneOutLine>
         </Grid>
         <Grid container spacing={1} alignItems="flex-end" justify="center">
-          Don't have an account?
-          <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+          <GeneralText>
+            Don't have an account?&nbsp;
+            <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+          </GeneralText>
         </Grid>
 
         {error.isError && <p>{error.message}</p>}

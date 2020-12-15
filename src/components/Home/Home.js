@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Header } from "../../styles/styled";
 import { AuthUserContext, withAuthorization } from "../Session";
 
 class Home extends React.Component {
@@ -10,7 +10,7 @@ class Home extends React.Component {
           console.log(authUser);
           return (
             <div>
-              <h1> Home </h1>
+              <Header> Home </Header>
             </div>
           );
         }}
