@@ -14,8 +14,13 @@ import LockIcon from "@material-ui/icons/Lock";
 import Button from "@material-ui/core/Button";
 import EmailIcon from "@material-ui/icons/Email";
 import { withFirebase } from "../Firebase";
-
 import { compose } from "recompose";
+import {
+  BtnNoneOutLine,
+  Header,
+  IconAlign,
+  GeneralText,
+} from "../../styles/styled";
 
 const INITIAL_STATE = {
   email: "",
@@ -80,12 +85,14 @@ class SignUp extends Component {
   render() {
     const { email, password, name, error } = this.state;
     return (
-      <div id="signup">
-        <h2> Sign Up </h2>
+      <div id="signup" justify="center">
+        <Header> Sign Up </Header>
 
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
           <Grid item>
-            <AccountCircle />
+            <IconAlign>
+              <AccountCircle />
+            </IconAlign>
           </Grid>
           <Grid item>
             <TextField
@@ -95,13 +102,20 @@ class SignUp extends Component {
               onChange={this.onChange}
               value={name}
               fullWidth
+              variant="outlined"
+              size="small"
+              margin="normal"
+              InputProps={{ style: { fontSize: 14 } }}
+              InputLabelProps={{ style: { fontSize: 12 } }}
             />
           </Grid>
         </Grid>
 
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
           <Grid item>
-            <EmailIcon />
+            <IconAlign>
+              <EmailIcon />
+            </IconAlign>
           </Grid>
           <Grid item>
             <TextField
@@ -111,12 +125,19 @@ class SignUp extends Component {
               onChange={this.onChange}
               value={email}
               fullWidth
+              variant="outlined"
+              size="small"
+              margin="normal"
+              InputProps={{ style: { fontSize: 14 } }}
+              InputLabelProps={{ style: { fontSize: 12 } }}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
           <Grid item>
-            <LockIcon />
+            <IconAlign>
+              <LockIcon />
+            </IconAlign>
           </Grid>
           <Grid item>
             <TextField
@@ -126,22 +147,30 @@ class SignUp extends Component {
               type="password"
               onChange={this.onChange}
               value={password}
+              fullWidth
+              variant="outlined"
+              size="small"
+              margin="normal"
+              InputProps={{ style: { fontSize: 14 } }}
+              InputLabelProps={{ style: { fontSize: 12 } }}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
-          <Button
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
+          <BtnNoneOutLine
             onClick={this.onSubmit}
             disabled={!email || !password || !name}
             variant="contained"
             color="primary"
           >
             Sign Up
-          </Button>
+          </BtnNoneOutLine>
         </Grid>
-        <Grid container spacing={1} alignItems="flex-end">
-          Already have an account?
-          <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+        <Grid container spacing={1} alignItems="flex-end" justify="center">
+          <GeneralText>
+            Already have an account?&nbsp;
+            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+          </GeneralText>
         </Grid>
 
         {error.isError && <p>{error.message}</p>}
