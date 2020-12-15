@@ -1,10 +1,12 @@
 /* To keep the navigation at the bottom at all times */
 .bottomNav {
-  position: absolute;
-  width: 100%;
-  left: 0;
+  position: relative;
+  overflow: hidden;
+  position: fixed;
   bottom: 0;
+  left: 0;
   right: 0;
+  width: 100%;
 }
 
 .navigation-container {

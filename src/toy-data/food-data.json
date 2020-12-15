@@ -1,0 +1,41 @@
+[
+    {
+        "id": 1,
+        "name": "Soondubu",
+        "image": "../images/soondubu.jpg",
+        "price": 12.99,
+        "description": "~30 mins",
+        "inCart" : false,
+        "count": 0,
+        "total": 0,
+        "time": "~30mins",
+        "difficulty":"Beginner friendly",
+        "author": "Yunxiu"
+    },
+    {
+        "id": 2,
+        "name": "Sushi",
+        "image": "../images/sushi.jpeg",
+        "price": 19.99,
+        "description": "~30 mins",
+        "inCart" : false,
+        "count": 0,
+        "total": 0,
+        "time": "~30mins",
+        "difficulty":"Beginner friendly",
+        "author": "Aditya"
+    },    
+    {
+        "id": 3,
+        "name": "Pasta",
+        "image": "../images/pasta.jpg",
+        "price": 14.99,
+        "description": "~30 mins",
+        "inCart" : false,
+        "count": 0,
+        "total": 0,
+        "time": "~30mins",
+        "difficulty":"Beginner friendly",
+        "author": "PTK"
+    }
+]

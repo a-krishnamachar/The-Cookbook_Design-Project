@@ -43,7 +43,7 @@ export const BtnRed = styled(BtnDefault)`
 `;
 
 export const BtnNoneOutLine = styled.button`
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 30px;
   justify-content: center;
   width: 140px;
@@ -86,6 +86,14 @@ export const Header = styled.div`
 export const IconAlign = styled.div`
   line-height: 37px;
   color: #6c757d;
+  opacity: 0.5;
+`;
+
+export const UserIconAlign = styled.div`
+  color: #6c757d;
+  opacity: 0.5;
+  margin-right: 10px;
+  line-height: 47px;
 `;
 
 export const GeneralText = styled.p`
@@ -93,3 +101,117 @@ export const GeneralText = styled.p`
   color: #6c757d;
   font-family: muli;
 `;
+
+export const CardAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  justify-content: center;
+`;
+
+export const CardContainer = styled.div`
+  justify-content: center;
+  margin-top: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+  min-width: 0;
+  height: 300px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+`;
+
+export const CardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 1px;
+  padding: 1.25rem;
+`;
+
+export const CardTitle = styled.h1`
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: muli;
+  margin-top: 5px;
+  margin-left: 0;
+  justify-content: left;
+  &:hover {
+    color: #6c757d;
+    cursor: pointer;
+  }
+`;
+
+export const CardText = styled.p`
+  color: #6c757d;
+  font-family: muli;
+  font-size: 10px;
+  &:hover {
+    color: #000;
+    cursor: pointer;
+  }
+`;
+export const CardAuthorText = styled(CardText)`
+  font-size: 16px;
+`;
+
+export const CardHover = styled.div`
+  color: white;
+  text-shadow: 2px 2px #000;
+  font-size: 50px;
+  font-family: muli;
+  position: relative;
+  top: -20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+`;
+
+export const CardImage = styled.img`
+  height: 200px;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  &:hover {
+    opacity: 0.5;
+    backface-visibility: hidden;
+    transition: 0.5s ease;
+    background-color: #000;
+  }
+  &:hover {
+    ${CardHover}
+  }
+`;
+
+export const SaveButton = styled(BtnNoneOutLine)`
+  margin-bottom: 10px;
+  width: 20%;
+  height: 70%;
+  margin-left: 15px;
+`;
+
+export const RowAlign = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex: auto;
+  justify-content: space-between;
+`;
+
+export const UserAlign = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-bottom: -15px;
+`;
+
+export const DescriptionAlign = styled.div`
+  flex-direction: column;
+  line-height: 3px;
+`;
+
+export const ColAlign = styled.div``;

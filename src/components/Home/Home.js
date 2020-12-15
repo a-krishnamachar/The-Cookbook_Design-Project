@@ -1,5 +1,7 @@
 import React from "react";
-import { Header } from "../../styles/styled";
+import { Card } from "../Card/Card";
+import { Header, CardAlign } from "../../styles/styled";
+import food from "../../toy-data/food-data";
 import { AuthUserContext, withAuthorization } from "../Session";
 
 class Home extends React.Component {
@@ -11,6 +13,11 @@ class Home extends React.Component {
           return (
             <div>
               <Header> Home </Header>
+              <CardAlign>
+                {food.map((foodItem) => (
+                  <Card foodItem={foodItem} key={`${foodItem.id}`} />
+                ))}
+              </CardAlign>
             </div>
           );
         }}
