@@ -5,6 +5,12 @@ import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 import SignOut from "../SignOut/SignOut";
+import { AddBtn } from "../../styles/styled";
+import { IconAlign } from "../../styles/styled";
+import SearchIcon from "@material-ui/icons/Search";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import TextField from "@material-ui/core/TextField";
 
 class MyCookbook extends React.Component {
   constructor(props) {
@@ -54,17 +60,38 @@ class MyCookbook extends React.Component {
 
           return (
             <div>
-              <Header> My Cookbook </Header>
+              <Header>
+                {" "}
+                My Cookbook <SignOut />
+              </Header>
+              <div>
+                <TextField
+                  placeholder={"Search your collections..."}
+                  onChange={(e) => this.searchSpace(e)}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <AddBtn>
+                  <button>+</button>
+                </AddBtn>
+              </div>
               <CardAlign>
                 {this.state.recipeList.map((recipe) => (
                   <CookbookCard recipe={recipe} key={`${recipe.id}`} />
                 ))}
               </CardAlign>
-              <SignOut />
             </div>
           );
         }}
       </AuthUserContext.Consumer>
+      //then call the recipe cards to show up below
     );
   }
 }
