@@ -137,9 +137,6 @@ export const CardTitle = styled.h1`
   font-size: 1.25rem;
   font-weight: bold;
   font-family: muli;
-  margin-top: 5px;
-  margin-left: 0;
-  justify-content: left;
   &:hover {
     color: #6c757d;
     cursor: pointer;
@@ -176,8 +173,54 @@ export const CardHover = styled.div`
 export const CardImage = styled.img`
   width: 100%;
   max-height: 200px;
+  object-fit: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  &:hover {
+    opacity: 0.5;
+    backface-visibility: hidden;
+    transition: 0.5s ease;
+    background-color: #000;
+  }
+  &:hover {
+    ${CardHover}
+  }
+`;
+
+export const CookbookCardContainer = styled.div`
+  justify-content: center;
+  margin-top: 20px;
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+  min-width: 0;
+  height: 150px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+`;
+
+export const CookbookCardBody = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: flex-start;
+  min-height: 1px;
+  padding: 1.25rem;
+`;
+
+export const CookbookCardImage = styled.img`
+  height: 100px;
+  width: 150px;
+  border-radius: 5%;
+  margin-right: 15%;
+  object-fit: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  overflow: hidden;
   &:hover {
     opacity: 0.5;
     backface-visibility: hidden;
@@ -216,8 +259,6 @@ export const DescriptionAlign = styled.div`
 
 export const ColAlign = styled.div``;
 
-
-
 export const FriendCardContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -227,7 +268,7 @@ export const FriendCardContainer = styled.div`
 
   margin-top: 5px;
   margin-bottom: 5px;
-  
+
   min-width: 0;
   height: 60px;
   word-wrap: break-word;
@@ -252,7 +293,6 @@ export const FriendCardBody = styled.div`
   }
 `;
 
-
 export const AddBtn = styled(BtnNoneOutLine)`
   background: linear-gradient(70deg, #00b31f, #00b32a);
   height: 100%;
@@ -265,13 +305,12 @@ export const AddBtn = styled(BtnNoneOutLine)`
   &:hover {
     opacity: 0.8;
     transform: translateY(0px);
-  } 
+  }
 `;
 
 export const RemoveBtn = styled(AddBtn)`
   background: linear-gradient(70deg, #de5057, #fc030f);
 `;
-
 
 export const FriendAlign = styled.div`
   display: flex;
