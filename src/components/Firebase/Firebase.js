@@ -79,7 +79,7 @@ class Firebase {
       .collection("userdata")
       .doc(`userdata/${fields.creator}`)
       .update({
-        cookbook: Firebase.firestore.FieldValue.arrayUnion(newRecipe.getId()),
+        cookbook: this.fieldValue.arrayUnion(newRecipe.getId()),
       });
   };
 
@@ -87,19 +87,19 @@ class Firebase {
 
   addFriend = (uid1, uid2) => {
     this.user(uid1).update({
-      friends: Firebase.firestore.FieldValue.arrayUnion(uid2),
+      friends: this.fieldValue.arrayUnion(uid2),
     });
     this.user(uid2).update({
-      friends: Firebase.firestore.FieldValue.arrayUnion(uid1),
+      friends: this.fieldValue.arrayUnion(uid1),
     });
   };
 
   removeFriend = (uid1, uid2) => {
     this.user(uid1).update({
-      friends: Firebase.firestore.FieldValue.arrayRemove(uid2),
+      friends: this.fieldValue.arrayRemove(uid2),
     });
     this.user(uid2).update({
-      friends: Firebase.firestore.FieldValue.arrayRemove(uid1),
+      friends: this.fieldValue.arrayRemove(uid1),
     });
   };
 
@@ -112,7 +112,7 @@ class Firebase {
       });
     this.recipe(rid).delete();
     this.user(uid).update({
-      cookbook: Firebase.firestore.FieldValue.arrayRemove(rid),
+      cookbook: this.fieldValue.arrayRemove(rid),
     });
   };
 }
