@@ -174,8 +174,8 @@ export const CardHover = styled.div`
 `;
 
 export const CardImage = styled.img`
-  height: 200px;
   width: 100%;
+  max-height: 200px;
   background-position: center center;
   background-repeat: no-repeat;
   &:hover {

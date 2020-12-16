@@ -14,15 +14,15 @@ import {
 import CardButton from "./CardButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 
-export const Card = ({ foodItem }) => {
+export const Card = ({ recipe }) => {
   const [hover, setHover] = React.useState(false);
 
   return (
     <div>
       <CardContainer>
         <CardImage
-          src={foodItem.image}
-          alt={foodItem.name}
+          src={recipe.image}
+          alt={recipe.title}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
         />
@@ -32,23 +32,23 @@ export const Card = ({ foodItem }) => {
             <CardText>{foodItem.description}</CardText>
           </RowAlign> */}
           <RowAlign>
-            <CardTitle>{foodItem.name}</CardTitle>
+            <CardTitle>{recipe.title}</CardTitle>
             <DescriptionAlign>
               <UserAlign>
                 <UserIconAlign>
                   <AccountCircle />
                 </UserIconAlign>
-                <CardAuthorText>{foodItem.author}</CardAuthorText>
+                <CardAuthorText>{recipe.creatorName}</CardAuthorText>
               </UserAlign>
-              <CardText>{foodItem.time}</CardText>
-              <CardText>{foodItem.difficulty}</CardText>
+              <CardText>{recipe.time}</CardText>
+              <CardText>{recipe.difficulty}</CardText>
             </DescriptionAlign>
           </RowAlign>
         </CardBody>
         <CardButton
-          foodID={foodItem.id}
-          price={foodItem.price}
-          name={foodItem.name}
+          recipeID={recipe.id}
+          price={recipe.price}
+          name={recipe.title}
           labelName="Save"
         />
       </CardContainer>
