@@ -44,16 +44,18 @@ class MyCookbook extends React.Component {
             querySnapshot.forEach((userDoc) => {
               let recipe = {};
               var data = userDoc.data();
-              recipe.id = userDoc.id;
-              recipe.creatorId = data.creator;
-              recipe.creatorName = this.state.userMap[data.creator].name;
-              recipe.difficulty = data.difficulty;
-              recipe.ingredients = data.ingredients;
-              recipe.instructions = data.instructions;
-              recipe.time = data.time;
-              recipe.title = data.title;
-              recipe.image = data.image;
-              recipeList.push(recipe);
+              if (data.creator == this.props.firebase.currentUserId()) {
+                recipe.id = userDoc.id;
+                recipe.creatorId = data.creator;
+                recipe.creatorName = this.state.userMap[data.creator].name;
+                recipe.difficulty = data.difficulty;
+                recipe.ingredients = data.ingredients;
+                recipe.instructions = data.instructions;
+                recipe.time = data.time;
+                recipe.title = data.title;
+                recipe.image = data.image;
+                recipeList.push(recipe);
+              }
             });
             this.setState({ recipeList: recipeList });
           });

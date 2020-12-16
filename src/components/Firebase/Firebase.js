@@ -58,6 +58,9 @@ class Firebase {
 
   /* User API */
 
+  currentUserId = () => {
+    return this.auth.currentUser.uid;
+  };
   user = (uid) => this.db.doc(`userdata/${uid}`);
 
   users = () => this.db.collection("userdata");
