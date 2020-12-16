@@ -313,7 +313,6 @@ export const RemoveBtn = styled(AddBtn)`
   background: linear-gradient(70deg, #de5057, #fc030f);
 `;
 
-
 export const PageAlign = styled.div`
   display: flex;
   flex-direction: column;
@@ -328,4 +327,10 @@ export const PageCardAlign = styled.div`
   margin-top: 20px;
   justify-content: center;
   margin-bottom: 50px;
+`;
+
+export const SearchBoxAlign = styled.div`
+  display: flex;
+  margin: 10%;
+  justify-content: center;
 `;
