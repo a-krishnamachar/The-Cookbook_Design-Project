@@ -313,16 +313,18 @@ export const RemoveBtn = styled(AddBtn)`
   background: linear-gradient(70deg, #de5057, #fc030f);
 `;
 
-export const FriendAlign = styled.div`
+
+export const PageAlign = styled.div`
   display: flex;
   flex-direction: column;
   margin: 10%;
   justify-content: center;
 `;
 
-export const FriendCardAlign = styled.div`
+export const PageCardAlign = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 0px;
   margin-top: 20px;
   justify-content: center;
   margin-bottom: 50px;

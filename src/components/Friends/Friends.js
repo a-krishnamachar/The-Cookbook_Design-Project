@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, FriendAlign, FriendCardAlign } from "../../styles/styled";
+import { Header, PageAlign, PageCardAlign } from "../../styles/styled";
 import { FriendCard } from "../FriendCard/FriendCard";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withRouter } from "react-router-dom";
@@ -32,7 +32,7 @@ class Friends extends React.Component {
     }
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     console.log("friends compDidMount")
 
     const users = await this.props.firebase.users();
@@ -90,11 +90,12 @@ class Friends extends React.Component {
 
       //get friend cards
       const allFriendCards = this.state.users.filter((user)=>{
-        if(this.state.search == null)
+        if(this.state.search == null) //if nothing is currently in searchbar, return everything
             return user
         else if(user.name.toLowerCase().includes(this.state.search.toLowerCase())){
             return user
-        }
+        } 
+        //else{} not a match, don't return
       }).map(user=>{
         if (user.id == currentUser.id) { //don't make a friend card for yourself
           return;
@@ -126,7 +127,7 @@ class Friends extends React.Component {
               <div>
                 <Header> Friends </Header>
                 
-                <FriendAlign>
+                <PageAlign>
                   <TextField
                     placeholder={"Find Friends..."}
                     onChange={(e)=>this.searchSpace(e)}
@@ -141,10 +142,10 @@ class Friends extends React.Component {
                     }}
                   />
                 
-                  <FriendCardAlign>
+                  <PageCardAlign>
                     {allFriendCards}
-                  </FriendCardAlign>
-                </FriendAlign>
+                  </PageCardAlign>
+                </PageAlign>
               </div>
             );
           }}
