@@ -280,12 +280,13 @@ export const FriendCardContainer = styled.div`
   overflow: hidden;
 `;
 
-export const FriendCardBody = styled.div`
+export const FriendCardBody = styled.button`
   display: flex;
   padding-left: 30px;
   padding-top: 5px;
   align-items: center;
   // background-color: purple;
+  border: none;
   width: 75%;
   &:hover {
     transition: 0.5s ease;

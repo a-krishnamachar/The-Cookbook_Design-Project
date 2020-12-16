@@ -25,7 +25,6 @@ class Friends extends React.Component {
     };
   }
 
-  
   getprops = async () =>{
     if (await this.state.currentUser){
       console.log("got the current user, done loading")
@@ -45,8 +44,10 @@ class Friends extends React.Component {
           "id": doc.id,
           ...doc.data() 
         };
-    }); //add in doc.id here
+    }); 
+
     console.log("all usersData",allUsersData)
+
     this.setState({
       users: allUsersData
     })
@@ -66,16 +67,9 @@ class Friends extends React.Component {
     this.setState({
       currentUser: currentUser
     })
-    console.log("currentUser!!!", currentUser)
 
+    console.log("currentUser", currentUser)
 
-    //Faith
-    //2DzHunNjPCOWdKQ0SDIGwNvil702
-
-    //Jacob
-    //1234
-
-    // this.props.firebase.addFriend("2DzHunNjPCOWdKQ0SDIGwNvil702", "1234");
   }
 
   searchSpace=(event)=>{
@@ -112,13 +106,13 @@ class Friends extends React.Component {
           console.log("friend", friend, "userId",user.id)
           if (user.id == friend) { //if this user is your friend
             return(
-              <FriendCard isFriend={true} user={user} key={`${user.id}` } />
+              <FriendCard currentUser={currentUser} firebase={this.props.firebase} isFriend={true} user={user} key={`${user.id}` } />
             )
           }
         };
         
         return( //this user is not your friend
-          <FriendCard isFriend={false} user={user} key={`${user.id}` } />
+          <FriendCard currentUser={currentUser} firebase={this.props.firebase} isFriend={false} user={user} key={`${user.id}` } />
         )
       })
 
