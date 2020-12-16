@@ -1,0 +1,48 @@
+[
+    {
+        "id": 1234,
+        "name": "Faith",
+        "cookbook": [
+            {
+                "id": 1,
+                "name": "Soondubu",
+                "image": "../images/soondubu.jpg",
+                "price": 12.99,
+                "description": "~30 mins",
+                "inCart" : false,
+                "count": 0,
+                "total": 0,
+                "time": "~30mins",
+                "difficulty":"Beginner friendly",
+                "author": "Yunxiu"
+            },
+            {
+                "id": 2,
+                "name": "Sushi",
+                "image": "../images/sushi.jpeg",
+                "price": 19.99,
+                "description": "~30 mins",
+                "inCart" : false,
+                "count": 0,
+                "total": 0,
+                "time": "~30mins",
+                "difficulty":"Beginner friendly",
+                "author": "Aditya"
+            }
+        ],
+        "friends": [
+            {
+                "id": 56678,
+                "name": "Amy"
+            },
+            {
+                "id": 6756,
+                "name": "PTK"
+            },
+            {
+                "id": 1234,
+                "name": "Jacob"
+            }
+        ]
+    }
+]

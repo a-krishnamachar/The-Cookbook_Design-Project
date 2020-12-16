@@ -215,3 +215,75 @@ export const DescriptionAlign = styled.div`
 `;
 
 export const ColAlign = styled.div``;
+
+
+
+export const FriendCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  // justify-content: flex-end;
+  padding: 0px;
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+  min-width: 0;
+  height: 60px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+`;
+
+export const FriendCardBody = styled.div`
+  display: flex;
+  padding-left: 30px;
+  padding-top: 5px;
+  align-items: center;
+  // background-color: purple;
+  width: 75%;
+  &:hover {
+    transition: 0.5s ease;
+    background-color: #ededed;
+  }
+`;
+
+
+export const AddBtn = styled(BtnNoneOutLine)`
+  background: linear-gradient(70deg, #00b31f, #00b32a);
+  height: 100%;
+  margin: 0px;
+  border-radius: 0px 0.5rem 0.5rem 0px;
+  width: 25%;
+  min-width: 75px;
+  color: #fff;
+
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(0px);
+  } 
+`;
+
+export const RemoveBtn = styled(AddBtn)`
+  background: linear-gradient(70deg, #de5057, #fc030f);
+`;
+
+
+export const FriendAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  justify-content: center;
+`;
+
+export const FriendCardAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  justify-content: center;
+  margin-bottom: 50px;
+`;
