@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "../Card/Card";
+import Card from "../Card/Card";
 import { Header, PageAlign, PageCardAlign } from "../../styles/styled";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withRouter } from "react-router-dom";
@@ -9,30 +9,28 @@ import { withFirebase } from "../Firebase";
 import User from "../../toy-data/food-data";
 
 //search bar
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 
-
 class Search extends React.Component {
-  constructor(){
+  constructor() {
     super();
 
-    this.state={
+    this.state = {
       recipeList: [],
       userMap: {},
-      search:null
+      search: null,
     };
   }
 
-  searchSpace=(event)=>{
+  searchSpace = (event) => {
     let keyword = event.target.value;
-    this.setState({search:keyword})
-  }
+    this.setState({ search: keyword });
+  };
 
   componentDidMount() {
-
     const userMap = {};
     const users = this.props.firebase.users();
     users.get().then((querySnapshot) => {
@@ -66,36 +64,45 @@ class Search extends React.Component {
       });
       this.setState({ recipeList: recipeList });
     });
-
   }
 
   render() {
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
-          const allRecipeCards = this.state.recipeList.filter((recipe)=>{
-            console.log("inidiv recipe", recipe)
-            console.log("this.state.search", this.state.search)
-            if(this.state.search == null) // if nothing is currently in searchbar, return everything
-                return recipe
-            else if(recipe.title.toLowerCase().includes(this.state.search.toLowerCase()) ||  //search for dish title
-              recipe.creatorName.toLowerCase().includes(this.state.search.toLowerCase())    //search for dish creator
-            ){
-                return recipe
-            }
-            else {
-              // console.log("ingredients", recipe.ingredients)
-              for (const ingredient of Object.values(recipe.ingredients)) {
-                if (ingredient != 'undefined') {
-                  if (ingredient.ingredient.food.toLowerCase().includes(this.state.search.toLowerCase())) {     //search for dish ingredient
-                    return recipe
+          const allRecipeCards = this.state.recipeList
+            .filter((recipe) => {
+              console.log("inidiv recipe", recipe);
+              console.log("this.state.search", this.state.search);
+              if (this.state.search == null)
+                // if nothing is currently in searchbar, return everything
+                return recipe;
+              else if (
+                recipe.title
+                  .toLowerCase()
+                  .includes(this.state.search.toLowerCase()) || //search for dish title
+                recipe.creatorName
+                  .toLowerCase()
+                  .includes(this.state.search.toLowerCase()) //search for dish creator
+              ) {
+                return recipe;
+              } else {
+                // console.log("ingredients", recipe.ingredients)
+                for (const ingredient of Object.values(recipe.ingredients)) {
+                  if (ingredient != "undefined") {
+                    if (
+                      ingredient.ingredient.food
+                        .toLowerCase()
+                        .includes(this.state.search.toLowerCase())
+                    ) {
+                      //search for dish ingredient
+                      return recipe;
+                    }
                   }
                 }
               }
-            }
-          }).map((recipe) => (
-            <Card recipe={recipe} key={`${recipe.id}`} />
-          ))
+            })
+            .map((recipe) => <Card recipe={recipe} key={`${recipe.id}`} />);
 
           return (
             <div>
@@ -103,23 +110,20 @@ class Search extends React.Component {
 
               <PageAlign>
                 <TextField
-                    placeholder={"Search dish, creator, ingredient..."}
-                    onChange={(e)=>this.searchSpace(e)}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment>
-                          <IconButton>
-                            <SearchIcon />
-                          </IconButton>
-                        </InputAdornment>
-                      )
-                    }}
-                  />
+                  placeholder={"Search dish, creator, ingredient..."}
+                  onChange={(e) => this.searchSpace(e)}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment>
+                        <IconButton>
+                          <SearchIcon />
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
 
-                <PageCardAlign>
-                  {allRecipeCards}
-                </PageCardAlign>
-
+                <PageCardAlign>{allRecipeCards}</PageCardAlign>
               </PageAlign>
             </div>
           );
@@ -128,6 +132,5 @@ class Search extends React.Component {
     );
   }
 }
-
 
 export default withFirebase(Search);

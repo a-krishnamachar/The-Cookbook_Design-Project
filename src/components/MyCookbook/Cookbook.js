@@ -1,6 +1,6 @@
 import React from "react";
 import { CookbookCard } from "../Card/CookbookCard";
-import { Card } from "../Card/Card";
+import Card from "../Card/Card";
 import AddButton from "./AddButton";
 import { Header, CardAlign, DeleteIconAlign } from "../../styles/styled";
 import { compose } from "recompose";
