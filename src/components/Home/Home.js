@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "../Card/Card";
+import Card from "../Card/Card";
 import { Header, CardAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
@@ -58,7 +58,7 @@ class Home extends React.Component {
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
-          console.log("in here")
+          console.log("in here");
           return (
             <div>
               <Header> Home </Header>
