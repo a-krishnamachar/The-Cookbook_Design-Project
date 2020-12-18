@@ -61,7 +61,7 @@ class AddPage extends React.Component {
       querySnapshot.forEach((userDoc) => {
         let data = userDoc.data();
         let ingredientItem = {
-          title: data.title,
+          food: data.title,
           image: data.image,
           type: data.type,
         };

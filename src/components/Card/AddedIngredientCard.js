@@ -17,7 +17,7 @@ export const AddedIngredientCard = ({ ingredient }) => {
           <IngredientColAlign>{ingredient.amount}</IngredientColAlign>
           <IngredientColAlign>{ingredient.unit}</IngredientColAlign>
           <IngredientColAlignForTitle>
-            {ingredient.title}
+            {ingredient.ingredient.food}
           </IngredientColAlignForTitle>
           <DeleteAlign>
             <DeleteIconAlign>

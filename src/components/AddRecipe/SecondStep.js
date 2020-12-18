@@ -36,7 +36,7 @@ const SecondStep = ({
   const [searchResults, setSearchResults] = React.useState([]);
   const [open, setOpen] = React.useState(false);
   const [confirmDelete, setConfirmDelete] = React.useState(false);
-  const [title, setTitle] = React.useState("");
+  const [ingredientItem, setIngredientItem] = React.useState({});
   const [amount, setAmount] = React.useState("");
   const [unit, setUnit] = React.useState("");
   const [deleteIndex, setDeleteIndex] = React.useState(-1);
@@ -50,13 +50,13 @@ const SecondStep = ({
     setOpenAlert(false);
   };
 
-  const handleClickOpen = (title) => {
-    setTitle(title);
+  const handleClickOpen = (ingredient) => {
+    setIngredientItem(ingredient);
     setOpen(true);
   };
 
   const handleClose = () => {
-    setTitle("");
+    setIngredientItem({});
     setAmount("");
     setUnit("");
     setOpen(false);
@@ -64,7 +64,7 @@ const SecondStep = ({
 
   const handleClickSubmit = () => {
     ingredients.push({
-      title: title,
+      ingredient: ingredientItem,
       amount: amount,
       unit: unit,
     });
@@ -97,8 +97,9 @@ const SecondStep = ({
     const keyword = event.target.value;
     const resultArray = [];
     Object.keys(allIngredients.allIngredients).map(function (key, index) {
+      console.log("key " + key);
       if (
-        allIngredients.allIngredients[key].title
+        allIngredients.allIngredients[key].food
           .toLowerCase()
           .startsWith(keyword.toLowerCase())
       ) {
@@ -136,12 +137,12 @@ const SecondStep = ({
       <IngredientBox>
         {searchResults.map((ingredient) => (
           <div
-            onClick={() => handleClickOpen(ingredient.title)}
-            key={`${ingredient.title}`}
+            onClick={() => handleClickOpen(ingredient)}
+            key={`${ingredient.food}`}
           >
             <IngredientCard
               ingredient={ingredient}
-              key={`${ingredient.title}`}
+              key={`${ingredient.food}`}
             />
           </div>
         ))}

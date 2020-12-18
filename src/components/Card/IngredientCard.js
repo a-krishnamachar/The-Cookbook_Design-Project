@@ -22,10 +22,10 @@ export const IngredientCard = ({ ingredient }) => {
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <IngredientImage src={ingredient.image} alt={ingredient.title} />
+        <IngredientImage src={ingredient.image} alt={ingredient.food} />
         {hover && <IngredientHover>ADD</IngredientHover>}
         <IngredientBody>
-          <CardTitle>{ingredient.title}</CardTitle>
+          <CardTitle>{ingredient.food}</CardTitle>
           <IngredientText>{ingredient.type}</IngredientText>
         </IngredientBody>
       </IngredientContainer>
