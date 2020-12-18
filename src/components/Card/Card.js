@@ -32,7 +32,7 @@ class Card extends React.Component {
   saveRecipe = (uid, rid) => {
     this.props.firebase
       .saveRecipe(uid, rid)
-      .then((data) => {
+      .then(() => {
         console.log(data);
       })
       .catch((err) => console.log(err));
