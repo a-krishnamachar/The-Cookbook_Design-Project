@@ -66,7 +66,7 @@ export class FriendCard extends React.Component {
         const user = this.props.user;
         const isFriend = this.state.isFriend;
 
-        const FriendButton = ({  }) => {
+        const FriendButton = () => {
             if (!isFriend) {
                 return (
                     <AddBtn onClick={() => this.addFriend(user)}>{"Add Friend"}</AddBtn>

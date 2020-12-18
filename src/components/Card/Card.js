@@ -10,12 +10,18 @@ import {
   DescriptionAlign,
   UserAlign,
   UserIconAlign,
+  GoToDetailedRecipeView
 } from "../../styles/styled";
 import CardButton from "./CardButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { withFirebase } from "../Firebase";
 import { AuthUserContext } from "../Session";
+<<<<<<< HEAD
 import SnackbarAlert from "../SnackbarAlert/SnackbarAlert";
+=======
+import { Link } from "react-router-dom";
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+>>>>>>> b7556f2486c85ec25f1173bf24c727d53104847b
 
 class Card extends React.Component {
   constructor(props) {
@@ -54,12 +60,17 @@ class Card extends React.Component {
           return (
             <div>
               <CardContainer>
-                <CardImage
-                  src={recipe.image}
-                  alt={recipe.title}
-                  onMouseEnter={() => this.setHover(true)}
-                  onMouseLeave={() => this.setHover(false)}
-                />
+                <GoToDetailedRecipeView>
+                  <ArrowForwardIcon style={{ color: "black", fontSize: "7em" }} />
+                </GoToDetailedRecipeView>
+                <Link to="/detailedRecipeView" style={{ textDecoration: "none" }}>
+                  <CardImage
+                    src={recipe.image}
+                    alt={recipe.title}
+                    onMouseEnter={() => this.setHover(true)}
+                    onMouseLeave={() => this.setHover(false)}
+                  />
+                </Link>
                 <CardBody>
                   {/* <RowAlign>
             
