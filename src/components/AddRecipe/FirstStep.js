@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 import TextField from "@material-ui/core/TextField";
-import { BtnNoneOutLine, TitleAlign } from "../../styles/styled";
+import {
+  BtnNoneOutLine,
+  TitleAlign,
+  BottomButtonAlign,
+} from "../../styles/styled";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -58,14 +62,7 @@ const FirstStep = ({
           required
         />
       </TitleAlign>
-      <div
-        style={{
-          display: "flex",
-          marginTop: 50,
-          marginRight: 50,
-          justifyContent: "flex-end",
-        }}
-      >
+      <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
           color="primary"
@@ -73,7 +70,7 @@ const FirstStep = ({
         >
           Next
         </BtnNoneOutLine>
-      </div>
+      </BottomButtonAlign>
     </Fragment>
   );
 };

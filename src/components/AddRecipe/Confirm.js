@@ -5,7 +5,12 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import { AddedIngredientCard } from "../Card/AddedIngredientCard";
 import { InstructionCard } from "../Card/InstructionCard";
-import { ListAlign, BtnNoneOutLine, CardImage } from "../../styles/styled";
+import {
+  ListAlign,
+  BtnNoneOutLine,
+  CardImage,
+  BottomButtonAlign,
+} from "../../styles/styled";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -96,13 +101,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
           ))}
         </List>
       </ListAlign>
-      <div
-        style={{
-          display: "flex",
-          marginBottom: 50,
-          justifyContent: "flex-end",
-        }}
-      >
+      <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
           color="default"
@@ -118,7 +117,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
         >
           Confirm and Continue
         </BtnNoneOutLine>
-      </div>
+      </BottomButtonAlign>
     </Fragment>
   );
 };

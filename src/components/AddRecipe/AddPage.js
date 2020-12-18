@@ -42,6 +42,7 @@ class AddPage extends React.Component {
         let data = userDoc.data();
         recipe.id = userDoc.id;
         recipe.creatorId = data.creator;
+        console.log("title " + data.title);
         recipe.creatorName = this.state.userMap[data.creator].name;
         recipe.difficulty = data.difficulty;
         recipe.ingredients = data.ingredients;
@@ -75,12 +76,7 @@ class AddPage extends React.Component {
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
-          return (
-            <AddRecipe
-              allIngredients={this.state.allIngredients}
-              firebase={this.props.firebase}
-            />
-          );
+          return <AddRecipe allIngredients={this.state.allIngredients} />;
         }}
       </AuthUserContext.Consumer>
     );

@@ -16,6 +16,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import {
+  BottomButtonAlign,
   BtnNoneOutLine,
   IngredientBox,
   SearchBoxAlign,
@@ -112,7 +113,7 @@ const SecondStep = ({
   return (
     <>
       <IngredientBox>
-        {currentIngredients.map((ingredient, index) => (
+        {ingredients.map((ingredient, index) => (
           <div onClick={() => handleOpenDelete(index)} key={`${index}`}>
             <AddedIngredientCard ingredient={ingredient} key={`${index}`} />
           </div>
@@ -227,13 +228,7 @@ const SecondStep = ({
           </Button>
         </DialogActions>
       </Dialog>
-      <div
-        style={{
-          display: "flex",
-          marginBottom: 50,
-          justifyContent: "flex-end",
-        }}
-      >
+      <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
           color="default"
@@ -249,7 +244,7 @@ const SecondStep = ({
         >
           Next
         </BtnNoneOutLine>
-      </div>
+      </BottomButtonAlign>
     </>
   );
 };
