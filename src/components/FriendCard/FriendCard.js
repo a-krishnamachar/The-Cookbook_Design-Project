@@ -28,27 +28,33 @@ export class FriendCard extends React.Component {
           })
     }
 
-    addFriend(friendId) {
+    addFriend(friend) {
         // console.log('this is:', this);
 
         // add friend in firebase
-        this.props.firebase.addFriend(this.props.currentUser.id, friendId);
+        this.props.firebase.addFriend(this.props.currentUser.id, friend.id);
 
         //update the dom
         this.setState({
             isFriend: !this.state.isFriend
           })
+        
+        this.props.sendData(friend.name, true);
+        
         this.render()
     }
 
-    removeFriend(friendId) {
+    removeFriend(friend) {
         //remove friend in firebase
-        this.props.firebase.removeFriend(this.props.currentUser.id, friendId);
+        this.props.firebase.removeFriend(this.props.currentUser.id, friend.id);
 
         //update the dom
         this.setState({
             isFriend: !this.state.isFriend
           })
+
+        this.props.sendData(friend.name, false);
+
         this.render()
     }
 
@@ -63,11 +69,11 @@ export class FriendCard extends React.Component {
         const FriendButton = ({  }) => {
             if (!isFriend) {
                 return (
-                    <AddBtn onClick={() => this.addFriend(user.id)}>{"Add Friend"}</AddBtn>
+                    <AddBtn onClick={() => this.addFriend(user)}>{"Add Friend"}</AddBtn>
                 );
             }
             return (
-                <RemoveBtn onClick={() => this.removeFriend(user.id)}>{"Remove Friend"}</RemoveBtn>
+                <RemoveBtn onClick={() => this.removeFriend(user)}>{"Remove Friend"}</RemoveBtn>
             );
         };
         

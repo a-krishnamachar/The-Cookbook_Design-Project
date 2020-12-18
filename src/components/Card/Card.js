@@ -46,6 +46,7 @@ export const Card = ({ recipe }) => {
           </RowAlign>
         </CardBody>
         <CardButton
+          onClick={() => console.log("clicked")}
           recipeID={recipe.id}
           price={recipe.price}
           name={recipe.title}
