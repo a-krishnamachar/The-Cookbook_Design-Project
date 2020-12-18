@@ -47,7 +47,7 @@ class Search extends React.Component {
       });
       this.setState({ userMap: userMap });
     });
-    const recipeList = [];
+    let recipeList = [];
     const recipes = this.props.firebase.recipes();
     recipes.get().then((querySnapshot) => {
       querySnapshot.forEach((userDoc) => {
@@ -64,6 +64,7 @@ class Search extends React.Component {
         recipe.image = data.image;
         recipeList.push(recipe);
       });
+      recipeList = recipeList.reverse();
       this.setState({ recipeList: recipeList });
     });
 

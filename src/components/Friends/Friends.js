@@ -12,14 +12,23 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 
+//Alert
+import Alert from '@material-ui/lab/Alert';
+
 
 class Friends extends React.Component {
 
   constructor(){
     super();
+    this.addOrRemoveFriendAlert = this.addOrRemoveFriendAlert.bind(this);
 
     this.state={
       loading: true,
+      alert: {
+        alert: false,
+        friendName: "",
+        isAdding: false,
+      },
       search:null,
       users: []
     };
@@ -77,6 +86,31 @@ class Friends extends React.Component {
     this.setState({search:keyword})
   }
 
+
+  addOrRemoveFriendAlert(friendName, isAdding) {
+    console.log(friendName);
+    this.setState({
+        alert: {
+          alert: true,
+          friendName: friendName,
+          isAdding: isAdding,
+        }
+      })
+    this.render();
+    setTimeout(
+      () => {
+        this.setState({
+          alert: {
+            alert: false,
+            friendName: "",
+            isAdding: false,
+          }
+        });
+        this.render();
+      }, 2000);
+  }
+  
+
   render() {
 
     if(this.state.loading){
@@ -101,22 +135,35 @@ class Friends extends React.Component {
           return;
         }
 
-        //for every freind in all users, check if its in friends, 
+        //for every user in all users, check if its a friend, 
         //   if so "Remove Friend" button, else "Add Friend" button
         for(const friend of Object.values(currentUser.friends)) {
-          console.log("friend", friend, "userId",user.id)
           if (user.id == friend) { //if this user is your friend
             return(
-              <FriendCard currentUser={currentUser} firebase={this.props.firebase} isFriend={true} user={user} key={`${user.id}` } />
+              <FriendCard sendData={this.addOrRemoveFriendAlert} currentUser={currentUser} firebase={this.props.firebase} isFriend={true} user={user} key={`${user.id}` } />
             )
           }
         };
         
         return( //this user is not your friend
-          <FriendCard currentUser={currentUser} firebase={this.props.firebase} isFriend={false} user={user} key={`${user.id}` } />
+          <FriendCard sendData={this.addOrRemoveFriendAlert} currentUser={currentUser} firebase={this.props.firebase} isFriend={false} user={user} key={`${user.id}` } />
         )
       })
 
+      let alert = null;
+      if (this.state.alert.alert) {
+        if (this.state.alert.isAdding) {
+          alert = <Alert style={{position: 'absolute', marginRight: '0px'}} variant="filled" severity="success">
+                  {this.state.alert.friendName} was added as a Friend!
+                </Alert>
+        }
+        else {
+          alert = <Alert style={{position: 'absolute', marginRight: '0px'}} variant="filled" severity="error">
+                  {this.state.alert.friendName} was removed from your friends
+                </Alert>
+        }
+        
+      }
 
       return (
         <AuthUserContext.Consumer>
@@ -125,8 +172,9 @@ class Friends extends React.Component {
             // console.log("user",User);
             return (
               <div>
+                {alert}
                 <Header> Friends </Header>
-                
+              
                 <PageAlign>
                   <TextField
                     placeholder={"Find Friends..."}
@@ -157,5 +205,6 @@ class Friends extends React.Component {
 
 
 // const condition = (authUser) => !!authUser;
+
 
 export default withFirebase(Friends);
