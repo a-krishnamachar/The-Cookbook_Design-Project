@@ -493,6 +493,10 @@ export const DetailedViewPageAlign = styled.div`
 
 export const GoToDetailedRecipeView = styled.div`
   position: absolute;
-  margin-top: -19%;
-  margin-left: 28%;
+  margin-top: -14%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
 `;
