@@ -87,6 +87,25 @@ export const IconAlign = styled.div`
   line-height: 37px;
   color: #6c757d;
   opacity: 0.5;
+  &:hover {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+`;
+
+export const CookbookCardIconAlign = styled.div`
+  flex-direction: row;
+  display: flex;
+`;
+
+export const CookbookCardIcon = styled.div`
+  color: #6c757d;
+  opacity: 0.5;
+  &:hover {
+    opacity: 0.3;
+    cursor: pointer;
+  }
+  margin-right: 20px;
 `;
 
 export const UserIconAlign = styled.div`
@@ -200,7 +219,7 @@ export const CookbookCardContainer = styled.div`
   margin-bottom: 20px;
   flex-direction: column;
   min-width: 0;
-  height: 150px;
+  height: 170px;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;

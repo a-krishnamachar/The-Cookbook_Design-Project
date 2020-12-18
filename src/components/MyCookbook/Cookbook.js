@@ -26,6 +26,7 @@ class MyCookbook extends React.Component {
       allRecipes: [],
       userMap: {},
       search: null,
+      shareWindowOpen: false,
     };
   }
 
@@ -118,10 +119,14 @@ class MyCookbook extends React.Component {
               }
             })
             .map(
-              (recipe) =>
+              (recipe, index) =>
                 (originalStatus && (
                   <CardAlign key={`${recipe.id}`}>
-                    <CookbookCard recipe={recipe} key={`${recipe.id}`} />
+                    <CookbookCard
+                      recipe={recipe}
+                      key={`${recipe.id}`}
+                      index={index}
+                    />
                   </CardAlign>
                 )) ||
                 (!originalStatus && (
