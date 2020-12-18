@@ -12,6 +12,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
 
 class MyCookbook extends React.Component {
   constructor(props) {
@@ -142,7 +143,9 @@ class MyCookbook extends React.Component {
                     ),
                   }}
                 />
-                <AddButton labelName="+" />
+                <Link to="/addpage" style={{ textDecoration: "none" }}>
+                  <AddButton labelName="+" />
+                </Link>
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
               <SignOut />

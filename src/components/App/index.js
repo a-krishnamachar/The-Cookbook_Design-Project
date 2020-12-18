@@ -7,6 +7,7 @@ import MyCookbookPage from "../MyCookbook/Cookbook.js";
 import FriendsPage from "../Friends/Friends.js";
 import SignIn from "../SignIn/SignIn.js";
 import SignUp from "../SignUp/SignUp.js";
+import AddPage from "../AddRecipe/AddPage.js";
 
 import * as ROUTES from "../../constants/routes";
 import Navigation from "../Navigation";
@@ -36,6 +37,7 @@ class App extends Component {
           <Route path={ROUTES.FRIENDS} component={FriendsPage} />
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.SIGN_UP} component={SignUp} />
+          <Route path={ROUTES.ADD_PAGE} component={AddPage} />
         </div>
       </Router>
     );
