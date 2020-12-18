@@ -182,6 +182,7 @@ export const CardImage = styled.img`
   object-fit: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
   &:hover {
     opacity: 0.5;
     backface-visibility: hidden;
@@ -465,4 +466,33 @@ export const BottomButtonAlign = styled.div`
   margin-right: 50px;
   margin-bottom: 50px;
   justify-content: flex-end;
+`;
+
+
+export const BackBtn = styled(BtnNoneOutLine)`
+  background: #FFF;
+  // height: 100%;
+  margin: 0px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: #000;
+  
+  &:hover {
+    opacity: 0.8;
+    transform: translateY(0px);
+  }
+`;
+
+export const DetailedViewPageAlign = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10%;
+  justify-content: center;
+`;
+
+export const GoToDetailedRecipeView = styled.div`
+  position: absolute;
+  margin-top: -19%;
+  margin-left: 28%;
 `;
