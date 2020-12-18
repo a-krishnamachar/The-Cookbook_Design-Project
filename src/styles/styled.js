@@ -93,7 +93,7 @@ export const UserIconAlign = styled.div`
   color: #6c757d;
   opacity: 0.5;
   margin-right: 10px;
-  line-height: 47px;
+  line-height: 65px;
 `;
 
 export const GeneralText = styled.p`
@@ -260,7 +260,7 @@ export const UserAlign = styled.div`
 
 export const DescriptionAlign = styled.div`
   flex-direction: column;
-  line-height: 3px;
+  line-height: 20px;
 `;
 
 export const ColAlign = styled.div``;

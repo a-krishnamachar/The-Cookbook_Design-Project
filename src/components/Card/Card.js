@@ -40,8 +40,6 @@ export const Card = ({ recipe }) => {
                 </UserIconAlign>
                 <CardAuthorText>{recipe.creatorName}</CardAuthorText>
               </UserAlign>
-              <CardText>{recipe.time}</CardText>
-              <CardText>{recipe.difficulty}</CardText>
             </DescriptionAlign>
           </RowAlign>
         </CardBody>
