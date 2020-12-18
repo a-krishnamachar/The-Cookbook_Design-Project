@@ -1,9 +1,9 @@
 import React from "react";
 import { SaveButton } from "../../styles/styled";
-const CardButton = ({ foodID, price, name, labelName }) => {
+const CardButton = ({ foodID, price, name, labelName, onClick }) => {
   return (
     <div>
-      <SaveButton>{labelName}</SaveButton>
+      <SaveButton onClick={onClick}>{labelName}</SaveButton>
     </div>
   );
 };
