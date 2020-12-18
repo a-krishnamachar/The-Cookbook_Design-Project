@@ -29,8 +29,18 @@ const ThirdStep = ({
 }) => {
   // Check if all values are not empty or if there are some error
   const isValid = instructions.length > 0;
+  const [openAlert, setOpenAlert] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [instruction, setInstruction] = React.useState("");
+  const [deleteIndex, setDeleteIndex] = React.useState(-1);
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
+
+  const handleAlert = () => {
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -50,14 +60,25 @@ const ThirdStep = ({
     handleClose();
   };
 
-  const handleDelete = (index) => {
-    instructions.splice(index, 1);
+  const handleDeleteSubmit = () => {
+    instructions.splice(deleteIndex, 1);
+    setInstruction(instructions);
+    handleDeleteClose();
+  };
+
+  const handleOpenDelete = (index) => {
+    setDeleteIndex(index);
+    setConfirmDelete(true);
+  };
+
+  const handleDeleteClose = () => {
+    setConfirmDelete(false);
   };
 
   return (
     <Fragment>
       {instructions.map((instruction, index) => (
-        <div onClick={() => handleDelete(index)}>
+        <div onClick={() => handleOpenDelete(index)} key={`${index}`}>
           <InstructionCard
             instruction={instruction}
             number={index}
@@ -73,6 +94,42 @@ const ThirdStep = ({
       >
         Add Instruction
       </BtnNoneOutLine>
+      <Dialog
+        open={openAlert}
+        onClose={handleAlertClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Alert</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please upload at least one instruction before continue:
+          </DialogContentText>
+          {/* <Input type="file" onChange={handleFileChange} /> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAlertClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      <Dialog
+        open={confirmDelete}
+        onClose={handleDeleteClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Do you want to delete this record?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleDeleteClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -126,9 +183,8 @@ const ThirdStep = ({
         </BtnNoneOutLine>
         <BtnNoneOutLine
           variant="contained"
-          disabled={!isValid}
           color="primary"
-          onClick={isValid ? handleNext : null}
+          onClick={isValid ? handleNext : handleAlert}
         >
           Next
         </BtnNoneOutLine>

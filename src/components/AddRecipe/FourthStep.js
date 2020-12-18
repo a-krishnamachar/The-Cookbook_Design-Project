@@ -26,16 +26,22 @@ const FourthStep = ({
   handleChange,
   values: { image },
   formErrors,
-  firebase,
 }) => {
   // Check if all values are not empty or if there are some error
   const [open, setOpen] = React.useState(false);
-  const [currentFile, setFile] = React.useState(null);
+  const [openAlert, setOpenAlert] = React.useState(false);
+  const isValid = image.length > 0;
   const handleUpload = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleAlert = () => {
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
   };
 
   //   const handleFileSubmit = async () => {
@@ -47,22 +53,17 @@ const FourthStep = ({
   //   };
 
   const handleFileSubmit = () => {
-    image = currentFile;
-    console.log("image " + image);
     handleClose();
   };
 
-  const handleFileChange = (event) => {
-    const tempFile = event.target.files[0];
-    setFile(tempFile);
-  };
-
-  const handleFileURLChange = (event) => {
-    setFile(event.target.value);
-  };
+  // const handleFileChange = (event) => {
+  //   const tempFile = event.target.files[0];
+  //   setFile(tempFile);
+  // };
 
   return (
     <Fragment>
+      <CardImage src={image || ""} alt="" />
       <Dialog
         open={open}
         onClose={handleClose}
@@ -71,12 +72,13 @@ const FourthStep = ({
         <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
         <DialogContent>
           <DialogContentText>Please upload the image here:</DialogContentText>
-          <Input type="file" onChange={handleFileChange} />
+          {/* <Input type="file" onChange={handleFileChange} /> */}
           <TextField
             autoFocus
-            onChange={handleFileURLChange}
+            onChange={handleChange}
             margin="dense"
-            id="url"
+            id="image"
+            name="image"
             label="url"
             type="text"
             fullWidth
@@ -91,6 +93,24 @@ const FourthStep = ({
           </Button>
         </DialogActions>
       </Dialog>
+      <Dialog
+        open={openAlert}
+        onClose={handleAlertClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Alert</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please upload the image before continue:
+          </DialogContentText>
+          {/* <Input type="file" onChange={handleFileChange} /> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAlertClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <BtnNoneOutLine
         variant="contained"
         color="default"
@@ -98,11 +118,11 @@ const FourthStep = ({
       >
         Upload Image
       </BtnNoneOutLine>
-      <img src={currentFile} alt="" />
+
       <div
         style={{
           display: "flex",
-          marginTop: 50,
+          marginBottom: 50,
           marginRight: 50,
           justifyContent: "flex-end",
         }}
@@ -118,7 +138,7 @@ const FourthStep = ({
         <BtnNoneOutLine
           variant="contained"
           color="primary"
-          onClick={handleNext}
+          onClick={isValid ? handleNext : handleAlert}
         >
           Next
         </BtnNoneOutLine>

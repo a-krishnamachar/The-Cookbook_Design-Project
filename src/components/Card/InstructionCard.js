@@ -4,10 +4,9 @@ import {
   InstructionColAlign,
   DeleteAlign,
   IngredientCardAlign,
+  DeleteIconAlign,
 } from "../../styles/styled";
-import CardButton from "./CardButton";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import AccountCircle from "@material-ui/icons/AccountCircle";
 
 export const InstructionCard = ({ instruction, number }) => {
   number++;
@@ -19,7 +18,9 @@ export const InstructionCard = ({ instruction, number }) => {
             {number}.{instruction}
           </InstructionColAlign>
           <DeleteAlign>
-            <DeleteOutlinedIcon />
+            <DeleteIconAlign>
+              <DeleteOutlinedIcon />
+            </DeleteIconAlign>
           </DeleteAlign>
         </IngredientRowAlign>
       </IngredientCardAlign>

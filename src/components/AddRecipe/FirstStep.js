@@ -1,17 +1,12 @@
 import React, { Fragment } from "react";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
+import { BtnNoneOutLine, TitleAlign } from "../../styles/styled";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-import {
-  BtnNoneOutLine,
-  Header,
-  TitleAlign,
-  GeneralText,
-} from "../../styles/styled";
 
 // Destructuring props
 const FirstStep = ({
@@ -22,9 +17,35 @@ const FirstStep = ({
 }) => {
   // Check if all values are not empty or if there are some error
   const isValid = title.length > 0;
+  const [openAlert, setOpenAlert] = React.useState(false);
+  // Handle actions
+  const handleAlert = () => {
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
+  };
 
   return (
     <Fragment>
+      <Dialog
+        open={openAlert}
+        onClose={handleAlertClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Alert</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please set the title before continue
+          </DialogContentText>
+          {/* <Input type="file" onChange={handleFileChange} /> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAlertClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <TitleAlign>
         <TextField
           fullWidth
@@ -47,9 +68,8 @@ const FirstStep = ({
       >
         <BtnNoneOutLine
           variant="contained"
-          disabled={!isValid}
           color="primary"
-          onClick={isValid ? handleNext : null}
+          onClick={isValid ? handleNext : handleAlert}
         >
           Next
         </BtnNoneOutLine>

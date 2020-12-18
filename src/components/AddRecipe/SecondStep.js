@@ -18,10 +18,7 @@ import IconButton from "@material-ui/core/IconButton";
 import {
   BtnNoneOutLine,
   IngredientBox,
-  IngredientAlign,
-  IngredientContainer,
   SearchBoxAlign,
-  PageCardAlign,
 } from "../../styles/styled";
 import { AcUnit } from "@material-ui/icons";
 
@@ -38,11 +35,20 @@ const SecondStep = ({
   const isValid = ingredients.length > 0;
   const [searchResults, setSearchResults] = React.useState([]);
   const [open, setOpen] = React.useState(false);
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [amount, setAmount] = React.useState("");
   const [unit, setUnit] = React.useState("");
+  const [deleteIndex, setDeleteIndex] = React.useState(-1);
   const [currentIngredients, setIngredient] = React.useState([]);
+  const [openAlert, setOpenAlert] = React.useState(false);
   // Handle actions
+  const handleAlert = () => {
+    setOpenAlert(true);
+  };
+  const handleAlertClose = () => {
+    setOpenAlert(false);
+  };
 
   const handleClickOpen = (title) => {
     setTitle(title);
@@ -66,12 +72,20 @@ const SecondStep = ({
     handleClose();
   };
 
-  const handleDelete = (index) => {
-    console.log("Reach");
-    ingredients.splice(index, 1);
+  const handleDeleteSubmit = () => {
+    ingredients.splice(deleteIndex, 1);
     setIngredient(ingredients);
+    handleDeleteClose();
   };
 
+  const handleOpenDelete = (index) => {
+    setDeleteIndex(index);
+    setConfirmDelete(true);
+  };
+
+  const handleDeleteClose = () => {
+    setConfirmDelete(false);
+  };
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
   };
@@ -98,7 +112,7 @@ const SecondStep = ({
     <>
       <IngredientBox>
         {currentIngredients.map((ingredient, index) => (
-          <div onClick={() => handleDelete(index)} key={`${index}`}>
+          <div onClick={() => handleOpenDelete(index)} key={`${index}`}>
             <AddedIngredientCard ingredient={ingredient} key={`${index}`} />
           </div>
         ))}
@@ -132,6 +146,41 @@ const SecondStep = ({
           </div>
         ))}
       </IngredientBox>
+      <Dialog
+        open={openAlert}
+        onClose={handleAlertClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Alert</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please upload at least one ingredient before continue:
+          </DialogContentText>
+          {/* <Input type="file" onChange={handleFileChange} /> */}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAlertClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={confirmDelete}
+        onClose={handleDeleteClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Do you want to delete this record?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleDeleteClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -194,9 +243,8 @@ const SecondStep = ({
         </BtnNoneOutLine>
         <BtnNoneOutLine
           variant="contained"
-          disabled={!isValid}
           color="primary"
-          onClick={isValid ? handleNext : null}
+          onClick={isValid ? handleNext : handleAlert}
         >
           Next
         </BtnNoneOutLine>

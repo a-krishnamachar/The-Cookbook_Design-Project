@@ -2,7 +2,7 @@ import React from "react";
 import { CookbookCard } from "../Card/CookbookCard";
 import { Card } from "../Card/Card";
 import AddButton from "./AddButton";
-import { Header, CardAlign } from "../../styles/styled";
+import { Header, CardAlign, DeleteIconAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
@@ -144,7 +144,9 @@ class MyCookbook extends React.Component {
                   }}
                 />
                 <Link to="/addpage" style={{ textDecoration: "none" }}>
-                  <AddButton labelName="+" />
+                  <DeleteIconAlign>
+                    <AddButton labelName="+" />
+                  </DeleteIconAlign>
                 </Link>
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>

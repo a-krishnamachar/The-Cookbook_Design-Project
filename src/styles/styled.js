@@ -349,8 +349,9 @@ export const TitleAlign = styled.div`
 `;
 
 export const IngredientBox = styled.div`
-  margin: 20%;
+  margin: 15%;
   flex-direction: column;
+  justify-content: space-between;
   display: flex;
   width: 70%;
   height: 40%;
@@ -446,4 +447,14 @@ export const IngredientCardAlign = styled.div`
 
 export const ListAlign = styled.div`
   margin-left: 5%;
+`;
+
+export const DeleteIconAlign = styled.div`
+  line-height: 37px;
+  color: #6c757d;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+    transform: translateY(0px);
+  }
 `;

@@ -45,7 +45,6 @@ const AddRecipe = (allIngredients, firebase) => {
   // Handle form change
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     // Set values
     setFormValues((prev) => ({
       ...prev,
@@ -93,7 +92,6 @@ const AddRecipe = (allIngredients, firebase) => {
             handleChange={handleChange}
             values={formValues}
             formErrors={formErrors}
-            firebase={firebase}
           />
         );
       case 4:
