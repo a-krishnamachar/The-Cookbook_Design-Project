@@ -4,3 +4,4 @@ export const SIGN_IN = "/signin";
 export const FRIENDS = "/friends";
 export const SEARCH = "/search";
 export const MYCOOKBOOK = "/mycookbook";
+export const ADD_PAGE = "/addpage";

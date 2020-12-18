@@ -23,6 +23,7 @@ class Firebase {
 
     this.auth = app.auth();
     this.db = app.firestore();
+    this.storage = app.storage();
   }
 
   /* Auth API */
@@ -64,6 +65,9 @@ class Firebase {
   user = (uid) => this.db.doc(`userdata/${uid}`);
 
   users = () => this.db.collection("userdata");
+
+  /* Ingredients API */
+  ingredients = () => this.db.collection("ingredients");
 
   /* Recipe API */
 

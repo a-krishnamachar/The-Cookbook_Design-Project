@@ -102,6 +102,12 @@ export const GeneralText = styled.p`
   font-family: muli;
 `;
 
+export const IngredientText = styled.p`
+  color: #6c757d;
+  font-family: muli;
+  margin-left: 15%;
+`;
+
 export const CardAlign = styled.div`
   display: flex;
   flex-direction: column;
@@ -333,4 +339,122 @@ export const SearchBoxAlign = styled.div`
   display: flex;
   margin: 10%;
   justify-content: center;
+`;
+
+export const TitleAlign = styled.div`
+  margin: auto;
+  display: flex;
+  width: 25%;
+  height: 25%;
+`;
+
+export const IngredientBox = styled.div`
+  margin: 15%;
+  flex-direction: column;
+  justify-content: space-between;
+  display: flex;
+  width: 70%;
+  height: 40%;
+`;
+
+export const IngredientAlign = styled.div``;
+
+export const IngredientContainer = styled.div`
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+`;
+
+export const IngredientHover = styled.div`
+  color: white;
+  text-shadow: 2px 2px #000;
+  font-size: 50px;
+  font-family: muli;
+  position: relative;
+  top: -20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+`;
+
+export const IngredientImage = styled.img`
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+`;
+
+export const IngredientBody = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const IngredientRowAlign = styled.div`
+  justify-content: flex-start;
+  display: flex;
+  margin: auto;
+  width: 70%;
+  height: 25px;
+  padding: 0.56rem;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+`;
+
+export const IngredientColAlign = styled.div`
+  float: left;
+  width: 25%;
+  margin-right: 10%;
+`;
+
+export const InstructionColAlign = styled.div`
+  float: left;
+  width: 85%;
+  margin-right: 10%;
+`;
+
+export const DeleteAlign = styled.div`
+  float: right;
+  width: 5%;
+  margin-right: 10%;
+`;
+
+export const IngredientColAlignForTitle = styled.div`
+  float: right;
+  width: 50%;
+  margin-left: 15%;
+`;
+
+export const IngredientCardAlign = styled.div`
+  flex-direction: row;
+  margin-bottom: 5px;
+`;
+
+export const ListAlign = styled.div`
+  margin-left: 5%;
+`;
+
+export const DeleteIconAlign = styled.div`
+  line-height: 37px;
+  color: #6c757d;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+    transform: translateY(0px);
+  }
 `;

@@ -2,7 +2,7 @@ import React from "react";
 import { CookbookCard } from "../Card/CookbookCard";
 import { Card } from "../Card/Card";
 import AddButton from "./AddButton";
-import { Header, CardAlign } from "../../styles/styled";
+import { Header, CardAlign, DeleteIconAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
@@ -12,6 +12,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
+import { Link } from "react-router-dom";
 
 class MyCookbook extends React.Component {
   constructor(props) {
@@ -142,7 +143,11 @@ class MyCookbook extends React.Component {
                     ),
                   }}
                 />
-                <AddButton labelName="+" />
+                <Link to="/addpage" style={{ textDecoration: "none" }}>
+                  <DeleteIconAlign>
+                    <AddButton labelName="+" />
+                  </DeleteIconAlign>
+                </Link>
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
               <SignOut />
