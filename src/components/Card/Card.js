@@ -15,12 +15,16 @@ import CardButton from "./CardButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { withFirebase } from "../Firebase";
 import { AuthUserContext } from "../Session";
+import SnackbarAlert from "../SnackbarAlert/SnackbarAlert";
 
 class Card extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hover: false,
+      open: false,
+      snackbarMessage: "",
+      saved: false,
     };
   }
   setHover = (didHover) => {
@@ -29,17 +33,20 @@ class Card extends React.Component {
     });
   };
 
+  handleClick = (message) =>
+    this.setState({ open: true, snackbarMessage: message });
+  handleClose = (event, reason) =>
+    reason === "clickaway" ? null : this.setState({ open: false });
+
   saveRecipe = (uid, rid) => {
     this.props.firebase
       .saveRecipe(uid, rid)
-      .then(() => {
-        console.log(data);
-      })
+      .then(() => this.handleClick("Recipe successfully saved"))
       .catch((err) => console.log(err));
   };
+
   render() {
     const recipe = this.props.recipe;
-    console.log(this.props.firebase);
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -73,13 +80,19 @@ class Card extends React.Component {
                   </RowAlign>
                 </CardBody>
                 <CardButton
+                  disabled={true}
                   onClick={() => this.saveRecipe(uid, recipe.id)}
                   recipeID={recipe.id}
                   price={recipe.price}
                   name={recipe.title}
-                  labelName="Save"
+                  labelName={this.state.saved ? "Saved" : "Save"}
                 />
               </CardContainer>
+              <SnackbarAlert
+                closeSnackbar={this.handleClose}
+                open={this.state.open}
+                message={this.state.snackbarMessage}
+              />
             </div>
           );
         }}
