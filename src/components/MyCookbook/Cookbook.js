@@ -7,7 +7,11 @@ import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 import SignOut from "../SignOut/SignOut";
-import { SearchBoxAlign, PageCardAlign } from "../../styles/styled";
+import {
+  SearchBoxAlign,
+  PageCardAlign,
+  BottomButtonAlign,
+} from "../../styles/styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
@@ -116,12 +120,12 @@ class MyCookbook extends React.Component {
             .map(
               (recipe) =>
                 (originalStatus && (
-                  <CardAlign>
+                  <CardAlign key={`${recipe.id}`}>
                     <CookbookCard recipe={recipe} key={`${recipe.id}`} />
                   </CardAlign>
                 )) ||
                 (!originalStatus && (
-                  <CardAlign>
+                  <CardAlign key={`${recipe.id}`}>
                     <Card recipe={recipe} key={`${recipe.id}`} />
                   </CardAlign>
                 ))
@@ -150,7 +154,9 @@ class MyCookbook extends React.Component {
                 </Link>
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
-              <SignOut />
+              <BottomButtonAlign>
+                <SignOut />
+              </BottomButtonAlign>
             </div>
           );
         }}

@@ -12,12 +12,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { InstructionCard } from "../Card/InstructionCard";
-import {
-  BtnNoneOutLine,
-  Header,
-  TitleAlign,
-  GeneralText,
-} from "../../styles/styled";
+import { BtnNoneOutLine, BottomButtonAlign } from "../../styles/styled";
 
 // Destructuring props
 const ThirdStep = ({
@@ -164,15 +159,7 @@ const ThirdStep = ({
           </Button>
         </DialogActions>
       </Dialog>
-      <div
-        style={{
-          display: "flex",
-          marginTop: 50,
-          marginRight: 50,
-          marginBottom: 50,
-          justifyContent: "flex-end",
-        }}
-      >
+      <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
           color="default"
@@ -188,7 +175,7 @@ const ThirdStep = ({
         >
           Next
         </BtnNoneOutLine>
-      </div>
+      </BottomButtonAlign>
     </Fragment>
   );
 };

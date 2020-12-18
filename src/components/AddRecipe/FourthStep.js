@@ -1,23 +1,15 @@
 import React, { Fragment } from "react";
-import Input from "@material-ui/core/Input";
-import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
-import { InstructionCard } from "../Card/InstructionCard";
 import {
   BtnNoneOutLine,
   CardImage,
-  TitleAlign,
-  GeneralText,
+  BottomButtonAlign,
 } from "../../styles/styled";
 
 const FourthStep = ({
@@ -119,14 +111,7 @@ const FourthStep = ({
         Upload Image
       </BtnNoneOutLine>
 
-      <div
-        style={{
-          display: "flex",
-          marginBottom: 50,
-          marginRight: 50,
-          justifyContent: "flex-end",
-        }}
-      >
+      <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
           color="default"
@@ -142,7 +127,7 @@ const FourthStep = ({
         >
           Next
         </BtnNoneOutLine>
-      </div>
+      </BottomButtonAlign>
     </Fragment>
   );
 };

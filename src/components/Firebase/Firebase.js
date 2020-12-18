@@ -84,9 +84,9 @@ class Firebase {
     //Add the new recipe's id to the userdata cookbook field
     return this.db
       .collection("userdata")
-      .doc(`userdata/${fields.creator}`)
+      .doc(`${fields.creator}`)
       .update({
-        cookbook: this.fieldValue.arrayUnion(newRecipe.getId()),
+        cookbook: this.fieldValue.arrayUnion(newRecipe.id),
       });
   };
 

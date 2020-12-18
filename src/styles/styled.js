@@ -458,3 +458,11 @@ export const DeleteIconAlign = styled.div`
     transform: translateY(0px);
   }
 `;
+
+export const BottomButtonAlign = styled.div`
+  display: flex;
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  justify-content: flex-end;
+`;
