@@ -24,6 +24,7 @@ class MyCookbook extends React.Component {
     this.state = {
       recipeList: [],
       allRecipes: [],
+      myRecipeIds: [],
       userMap: {},
       search: null,
       shareWindowOpen: false,
@@ -36,6 +37,7 @@ class MyCookbook extends React.Component {
   };
 
   componentDidMount() {
+    const myid = this.props.firebase.currentUserId();
     const userMap = {};
     const users = this.props.firebase.users();
     users.get().then((querySnapshot) => {
@@ -53,26 +55,38 @@ class MyCookbook extends React.Component {
     const recipeList = [];
     const allRecipes = [];
     const recipes = this.props.firebase.recipes();
-    recipes.get().then((querySnapshot) => {
-      querySnapshot.forEach((userDoc) => {
-        let recipe = {};
-        var data = userDoc.data();
-        recipe.id = userDoc.id;
-        recipe.creatorId = data.creator;
-        recipe.creatorName = this.state.userMap[data.creator].name;
-        recipe.difficulty = data.difficulty;
-        recipe.ingredients = data.ingredients;
-        recipe.instructions = data.instructions;
-        recipe.time = data.time;
-        recipe.title = data.title;
-        recipe.image = data.image;
-        allRecipes.push(recipe);
-        if (data.creator == this.props.firebase.currentUserId()) {
-          recipeList.push(recipe);
-        }
+
+    this.props.firebase
+      .user(myid)
+      .get()
+      .then((data) => {
+        this.setState({
+          myRecipeIds: data.data().cookbook,
+        });
+        return data.data().cookbook;
+      })
+      .then((mycb) => {
+        recipes.get().then((querySnapshot) => {
+          querySnapshot.forEach((userDoc) => {
+            let recipe = {};
+            var data = userDoc.data();
+            recipe.id = userDoc.id;
+            recipe.creatorId = data.creator;
+            recipe.creatorName = this.state.userMap[data.creator].name;
+            recipe.difficulty = data.difficulty;
+            recipe.ingredients = data.ingredients;
+            recipe.instructions = data.instructions;
+            recipe.time = data.time;
+            recipe.title = data.title;
+            recipe.image = data.image;
+            allRecipes.push(recipe);
+            if (data.creator == myid || mycb.includes(userDoc.id)) {
+              recipeList.push(recipe);
+            }
+          });
+          this.setState({ recipeList: recipeList, allRecipes: allRecipes });
+        });
       });
-      this.setState({ recipeList: recipeList, allRecipes: allRecipes });
-    });
   }
 
   render() {
@@ -82,10 +96,11 @@ class MyCookbook extends React.Component {
           let originalStatus = true;
           const allRecipeCards = this.state.allRecipes
             .filter((recipe) => {
-              console.log("inidiv recipe", recipe);
-              console.log("this.state.search", this.state.search);
               if (this.state.search == null || this.state.search == "") {
-                if (recipe.creatorId == this.props.firebase.currentUserId()) {
+                if (
+                  recipe.creatorId == this.props.firebase.currentUserId() ||
+                  this.state.myRecipeIds.includes(recipe.id)
+                ) {
                   originalStatus = true;
                   return recipe;
                 }
