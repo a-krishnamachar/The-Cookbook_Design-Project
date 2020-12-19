@@ -94,6 +94,7 @@ const SecondStep = ({
   const handleUnitChange = (event) => {
     setUnit(event.target.value);
   };
+  
   const handleSearch = (event) => {
     const keyword = event.target.value;
     const resultArray = [];
@@ -102,13 +103,24 @@ const SecondStep = ({
       if (
         allIngredients.allIngredients[key].food
           .toLowerCase()
-          .startsWith(keyword.toLowerCase())
+          .includes(keyword.toLowerCase())
       ) {
         resultArray.push(allIngredients.allIngredients[key]);
       }
     });
     setSearchResults(resultArray);
   };
+
+  //if nothing is in the search bar, display all options
+  let noResults = false;
+  Object.keys(allIngredients.allIngredients).map(function (key, index) {
+    if (searchResults.length == 0) {
+      noResults = true;
+    }
+    if (noResults) {
+      searchResults.push(allIngredients.allIngredients[key]);
+    }
+  });
 
   return (
     <>
