@@ -80,6 +80,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
               <AddedIngredientCard
                 ingredient={ingredient}
                 key={`${ingredient.title}`}
+                isCreatingRecipe={true}
               />
             </div>
           ))}
@@ -96,6 +97,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
                 instruction={instruction}
                 number={index}
                 key={`${index}`}
+                isCreatingRecipe={true}
               />
             </div>
           ))}

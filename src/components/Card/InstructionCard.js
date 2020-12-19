@@ -8,8 +8,19 @@ import {
 } from "../../styles/styled";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
-export const InstructionCard = ({ instruction, number }) => {
+export const InstructionCard = ({ instruction, number, isCreatingRecipe }) => {
   number++;
+
+  const PossibleDeleteIcon = () => {
+    if (isCreatingRecipe) {
+      return (<DeleteOutlinedIcon />);
+    }
+    else {
+      return null;
+    }
+    
+  }
+
   return (
     <div>
       <IngredientCardAlign>
@@ -19,7 +30,7 @@ export const InstructionCard = ({ instruction, number }) => {
           </InstructionColAlign>
           <DeleteAlign>
             <DeleteIconAlign>
-              <DeleteOutlinedIcon />
+              <PossibleDeleteIcon />
             </DeleteIconAlign>
           </DeleteAlign>
         </IngredientRowAlign>

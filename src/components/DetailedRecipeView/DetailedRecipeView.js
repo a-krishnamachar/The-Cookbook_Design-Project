@@ -52,6 +52,7 @@ class DetailedRecipeView extends React.Component {
                     <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
                     <h1>{recipe.title}</h1>
                 </DetailedViewHeaderAlign>
+
                 <DetailedViewPageAlign>
                     <CardImage src={recipe.image} />
                     
@@ -65,6 +66,7 @@ class DetailedRecipeView extends React.Component {
                             <AddedIngredientCard
                                 ingredient={ingredient}
                                 key={`${ingredient.title}`}
+                                isCreatingRecipe={false}
                             />
                             </div>
                         ))}
@@ -78,6 +80,7 @@ class DetailedRecipeView extends React.Component {
                                 instruction={instruction}
                                 number={index}
                                 key={`${index}`}
+                                isCreatingRecipe={false}
                             />
                             </div>
                         ))}
