@@ -11,6 +11,7 @@ import { AddedIngredientCard } from "../Card/AddedIngredientCard";
 import { InstructionCard } from "../Card/InstructionCard";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
+import { Link } from "react-router-dom";
 
 import {
     BackBtn,
@@ -26,10 +27,11 @@ class DetailedRecipeView extends React.Component {
   }
 
   render() {
-    const { data } = this.props.location
+    let { data, search } = this.props.location
     let recipe = data;
     console.log("recipe", recipe);
-
+    console.log("search 1", search.substring(1));
+    search = search.substring(1);
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -37,7 +39,12 @@ class DetailedRecipeView extends React.Component {
             
             <div>
                 <DetailedViewHeaderAlign>
-                    <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
+                    <Link
+                        to={{pathname: "/search", search: search}}
+                        style={{ textDecoration: "none" }}
+                    >
+                        <BackBtn> <ArrowBackIcon /></BackBtn>
+                    </Link> 
                     <h1>{recipe.title}</h1>
                 </DetailedViewHeaderAlign>
 

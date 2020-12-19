@@ -30,7 +30,20 @@ class Search extends React.Component {
     this.setState({ search: keyword });
   };
 
+  // componentWillUnmount() {
+  //   console.log("current Search", this.state.search)
+   
+  // }
+
   componentDidMount() {
+
+    let { search } = this.props.location;
+    console.log("search 2", search.substring(1));
+     search = search.substring(1);
+    if (search != "") {
+      this.setState({search: search})
+    }
+
     const userMap = {};
     const users = this.props.firebase.users();
     users.get().then((querySnapshot) => {
@@ -68,6 +81,9 @@ class Search extends React.Component {
   }
 
   render() {
+    
+    
+
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -103,7 +119,7 @@ class Search extends React.Component {
                 }
               }
             })
-            .map((recipe) => <Card recipe={recipe} key={`${recipe.id}`} />);
+            .map((recipe) => <Card search={this.state.search} recipe={recipe} key={`${recipe.id}`} />);
 
           return (
             <div>
@@ -113,6 +129,7 @@ class Search extends React.Component {
                 <TextField
                   placeholder={"Search dish, creator, ingredient..."}
                   onChange={(e) => this.searchSpace(e)}
+                  value={this.state.search}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment>

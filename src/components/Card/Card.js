@@ -50,6 +50,7 @@ class Card extends React.Component {
 
   render() {
     const recipe = this.props.recipe;
+    const search = this.props.search;
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -63,7 +64,7 @@ class Card extends React.Component {
                   />
                 </GoToDetailedRecipeView>
                 <Link
-                  to={{pathname: "/detailedRecipeView", data: recipe}}
+                  to={{pathname: "/detailedRecipeView", data: recipe, search: search}}
                   style={{ textDecoration: "none" }}
                 >
                   <CardImage
