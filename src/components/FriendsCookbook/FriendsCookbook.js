@@ -134,6 +134,7 @@ class MyCookbook extends React.Component {
                       key={`${recipe.id}`}
                       index={index}
                       isFriendsCookbook={true}
+                      user={user}
                     />
                   </CardAlign>
                 )) ||
@@ -148,7 +149,13 @@ class MyCookbook extends React.Component {
 
           return (
             <div>
-              <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
+              {/* <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn> */}
+              <Link
+                  to={{pathname: "/friends"}}
+                  style={{ textDecoration: "none" }}
+                  >
+                  <BackBtn> <ArrowBackIcon /></BackBtn>
+              </Link>
               <Header> {user.name}'s Cookbook</Header>
               <SearchBoxAlign>
                 <TextField

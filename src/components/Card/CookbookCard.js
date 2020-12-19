@@ -22,7 +22,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
-export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
+export const CookbookCard = ({ recipe, index, isFriendsCookbook, user}) => {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const url = "https://cookbook.com/recipe/" + index;
@@ -60,7 +60,6 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
     }
     
   }
-
   return (
     <div>
       <Dialog
@@ -99,7 +98,7 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
           />
           <ColAlign>
             <Link
-              to={{pathname: "/detailedRecipeView", data: recipe}}
+              to={{pathname: "/detailedRecipeView", data: {...recipe, user: user}}}
               style={{ textDecoration: "none" }}
             >
               <CardTitle>{recipe.title}</CardTitle>

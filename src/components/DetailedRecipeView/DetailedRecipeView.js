@@ -32,6 +32,40 @@ class DetailedRecipeView extends React.Component {
     console.log("recipe", recipe);
     console.log("search 1", search.substring(1));
     search = search.substring(1);
+    let user = [];
+    if (typeof(recipe) != "undefined") {
+        user = recipe.user
+    }
+    console.log("USERRR", user)
+
+    const BackButton = () => {
+        if (search != "") {
+            return (<Link
+                        to={{pathname: "/search", search: search}}
+                        style={{ textDecoration: "none" }}
+                        >
+                        <BackBtn> <ArrowBackIcon /></BackBtn>
+                    </Link>
+                    ); 
+        }
+        else {
+            if (typeof(user) != "undefined") {
+                return (<Link
+                    to={{pathname: "/friendsCookbook", data: user}}
+                    style={{ textDecoration: "none" }}
+                    >
+                    <BackBtn> <ArrowBackIcon /></BackBtn>
+                </Link>
+                ); 
+            }
+            else {
+                return (
+                    <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
+                    );
+            }
+        }
+    }
+
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -39,12 +73,7 @@ class DetailedRecipeView extends React.Component {
             
             <div>
                 <DetailedViewHeaderAlign>
-                    <Link
-                        to={{pathname: "/search", search: search}}
-                        style={{ textDecoration: "none" }}
-                    >
-                        <BackBtn> <ArrowBackIcon /></BackBtn>
-                    </Link> 
+                    <BackButton />
                     <h1>{recipe.title}</h1>
                 </DetailedViewHeaderAlign>
 
