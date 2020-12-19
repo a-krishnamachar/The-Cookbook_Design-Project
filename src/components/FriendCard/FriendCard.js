@@ -87,18 +87,16 @@ export class FriendCard extends React.Component {
         return (
             <div>
             <FriendCardContainer>
-               
+                <Link
+                    to={{pathname: "/friendsCookbook", data: user}}
+                    style={{ textDecoration: "none", width: "100%" }}
+                 >
                     <FriendCardBody>
-                        <Link
-                            to={{pathname: "/friendsCookbook", data: user}}
-                            style={{ textDecoration: "none" }}
-                        >
-                            <CardTitle>{user.name}</CardTitle>
-                        </Link>
+                        <CardTitle>{user.name}</CardTitle>
                     </FriendCardBody>
-                
-                
-                  <FriendButton/>
+                </Link>
+            
+                <FriendButton/>
                 
 
             </FriendCardContainer>

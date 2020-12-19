@@ -313,7 +313,8 @@ export const FriendCardBody = styled.button`
   align-items: center;
   // background-color: purple;
   border: none;
-  width: 75%;
+  width: 100%;
+  cursor: pointer;
   outline: none;
   &:hover {
     transition: 0.5s ease;
