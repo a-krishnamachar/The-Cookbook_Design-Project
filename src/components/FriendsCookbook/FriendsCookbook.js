@@ -11,6 +11,7 @@ import {
   PageCardAlign,
   BottomButtonAlign,
   BackBtn,
+  FriendsCookbookBackBtn
 } from "../../styles/styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -151,6 +152,7 @@ class MyCookbook extends React.Component {
           return (
             <div>
               {/* <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn> */}
+              <FriendsCookbookBackBtn>
               <Link
                 to={{ pathname: "/friends" }}
                 style={{ textDecoration: "none" }}
@@ -160,6 +162,7 @@ class MyCookbook extends React.Component {
                   <ArrowBackIcon />
                 </BackBtn>
               </Link>
+              </FriendsCookbookBackBtn>
               <Header> {user.name}'s Cookbook</Header>
               <SearchBoxAlign>
                 <TextField

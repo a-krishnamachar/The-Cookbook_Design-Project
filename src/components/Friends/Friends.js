@@ -30,7 +30,8 @@ class Friends extends React.Component {
         isAdding: false,
       },
       search:null,
-      users: []
+      users: [],
+      first: true
     };
   }
 
@@ -112,18 +113,23 @@ class Friends extends React.Component {
   
 
   render() {
-
+    
     if(this.state.loading){
       this.getprops();
       return null;
     } else {
 
+      let allUsers = this.state.users
+      if (this.state.first) {
+        allUsers = allUsers.reverse();
+        this.setState({first: false})
+      }
       // your user id
       const currentUser= this.state.currentUser
       // console.log("this.state.currentUser", currentUser)
 
       //get friend cards
-      let allFriendCards = this.state.users.reverse().filter((user)=>{
+      let allFriendCards = allUsers.filter((user)=>{
         if(this.state.search == null) //if nothing is currently in searchbar, return everything
             return user
         else if(user.name.toLowerCase().includes(this.state.search.toLowerCase())){

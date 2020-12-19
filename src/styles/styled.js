@@ -563,3 +563,9 @@ export const EditIngredientAlign = styled.div`
 export const EditIngredientTextAlign = styled.div`
   margin-right: 10%;
 `;
+export const FriendsCookbookBackBtn = styled.div`
+  position: fixed;
+  // background-color: purple;
+  margin-top: 10px;
+  margin-left: 10px;
+`;
