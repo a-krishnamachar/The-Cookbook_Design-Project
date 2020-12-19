@@ -10,6 +10,7 @@ import {
   CookbookCardIconAlign,
   CookbookCardIcon,
 } from "../../styles/styled";
+import Delete from "../DeleteRecipe/Delete";
 import Dialog from "@material-ui/core/Dialog";
 import Button from "@material-ui/core/Button";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -22,47 +23,43 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
-export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
+export const CookbookCard = ({ recipe, index, isFriendsCookbook, creator }) => {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [deleteWindowOpen, setDeleteWindowOpen] = React.useState(false);
+  const [deleteId, setDeleteId] = React.useState(-1);
   const url = "https://cookbook.com/recipe/" + index;
+  const editPermission = recipe.creatorId === creator;
 
-  const PossibleIcons = () => {
-    if (!isFriendsCookbook) {
-      return (
-        <CookbookCardIconAlign>
-          <CookbookCardIcon>
-            <ShareIcon onClick={() => setOpen(true)} />
-          </CookbookCardIcon>
-          <CookbookCardIcon>
-            <EditIcon />
-          </CookbookCardIcon>
-          <CookbookCardIcon>
-            <DeleteOutlineIcon />
-          </CookbookCardIcon>
-      </CookbookCardIconAlign>
-      );
-    }
-    else {
-      return (
-        <CookbookCardIconAlign>
-          <CookbookCardIcon>
-            <ShareIcon onClick={() => setOpen(true)} />
-          </CookbookCardIcon>
-          <CookbookCardIcon>
-            
-          </CookbookCardIcon>
-          <CookbookCardIcon>
-            
-          </CookbookCardIcon>
-        </CookbookCardIconAlign>
-      );
-    }
-    
-  }
+  const handleDeleteClose = () => {
+    setDeleteWindowOpen(false);
+  };
 
+  const handleDeleteSubmit = () => {
+    console.log("recipe.id " + recipe.id);
+    setDeleteId(recipe.id);
+    handleDeleteClose();
+  };
   return (
     <div>
+      <Delete id={deleteId} />
+      <Dialog
+        open={deleteWindowOpen}
+        onClose={handleDeleteClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">
+          Do you want to delete this recipe?
+        </DialogTitle>
+        <DialogActions>
+          <Button onClick={handleDeleteClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -99,16 +96,27 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
           />
           <ColAlign>
             <Link
-              to={{pathname: "/detailedRecipeView", data: recipe}}
+              to={{ pathname: "/detailedRecipeView", data: recipe }}
               style={{ textDecoration: "none" }}
             >
               <CardTitle>{recipe.title}</CardTitle>
             </Link>
-            <DescriptionAlign>
-              {/* <CardText>{"56 people viewed"}</CardText> */}
-              {/* <CardText>{"9 people used your recipe"}</CardText> */}
-            </DescriptionAlign>
-            <PossibleIcons />
+            <DescriptionAlign></DescriptionAlign>
+            <CookbookCardIconAlign>
+              <CookbookCardIcon>
+                <ShareIcon onClick={() => setOpen(true)} />
+              </CookbookCardIcon>
+              <CookbookCardIcon>
+                {(editPermission || isFriendsCookbook) && <EditIcon />}
+              </CookbookCardIcon>
+              <CookbookCardIcon>
+                {(editPermission || isFriendsCookbook) && (
+                  <DeleteOutlineIcon
+                    onClick={() => setDeleteWindowOpen(true)}
+                  />
+                )}
+              </CookbookCardIcon>
+            </CookbookCardIconAlign>
           </ColAlign>
         </CookbookCardBody>
       </CookbookCardContainer>
