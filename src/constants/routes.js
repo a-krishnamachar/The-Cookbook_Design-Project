@@ -6,3 +6,4 @@ export const SEARCH = "/search";
 export const MYCOOKBOOK = "/mycookbook";
 export const ADD_PAGE = "/addpage";
 export const DETAILED_RECIPE_VIEW = "/detailedRecipeView";
+export const FRIENDS_COOKBOOK = "/friendsCookbook";

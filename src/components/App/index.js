@@ -9,6 +9,7 @@ import SignIn from "../SignIn/SignIn.js";
 import SignUp from "../SignUp/SignUp.js";
 import AddPage from "../AddRecipe/AddPage.js";
 import DetailedRecipeView from "../DetailedRecipeView/DetailedRecipeView";
+import FriendsCookbook from "../FriendsCookbook/FriendsCookbook";
 
 import * as ROUTES from "../../constants/routes";
 import Navigation from "../Navigation";
@@ -40,6 +41,7 @@ class App extends Component {
           <Route path={ROUTES.SIGN_UP} component={SignUp} />
           <Route path={ROUTES.ADD_PAGE} component={AddPage} />
           <Route path={ROUTES.DETAILED_RECIPE_VIEW} component={DetailedRecipeView} />
+          <Route path={ROUTES.FRIENDS_COOKBOOK} component={FriendsCookbook} />
         </div>
       </Router>
     );

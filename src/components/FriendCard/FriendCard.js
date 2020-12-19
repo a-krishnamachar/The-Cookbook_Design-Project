@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FriendCardContainer,
   FriendCardBody,
@@ -59,7 +60,13 @@ export class FriendCard extends React.Component {
     }
 
     goToUsersCookbook(user) {
+        // const { history } = this.props;
+        // this.props.history.push({
+        //     pathname: '/friendCookbook',
+        //     state: { user: this.props.user }
+        //   })
         console.log("in goToUsersCookbook with user:", user)
+        // this.props.history.push();
     }
 
     render() {
@@ -80,12 +87,19 @@ export class FriendCard extends React.Component {
         return (
             <div>
             <FriendCardContainer>
-
-                <FriendCardBody onClick={() => this.goToUsersCookbook(user)}>
-                    <CardTitle>{user.name}</CardTitle>
-                </FriendCardBody>
+               
+                    <FriendCardBody>
+                        <Link
+                            to={{pathname: "/friendsCookbook", data: user}}
+                            style={{ textDecoration: "none" }}
+                        >
+                            <CardTitle>{user.name}</CardTitle>
+                        </Link>
+                    </FriendCardBody>
                 
-                <FriendButton/>
+                
+                  <FriendButton/>
+                
 
             </FriendCardContainer>
             </div>

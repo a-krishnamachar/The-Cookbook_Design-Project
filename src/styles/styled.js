@@ -314,6 +314,7 @@ export const FriendCardBody = styled.button`
   // background-color: purple;
   border: none;
   width: 75%;
+  outline: none;
   &:hover {
     transition: 0.5s ease;
     background-color: #ededed;

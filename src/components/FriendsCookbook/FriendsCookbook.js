@@ -1,7 +1,6 @@
 import React from "react";
 import { CookbookCard } from "../Card/CookbookCard";
 import Card from "../Card/Card";
-import AddButton from "./AddButton";
 import { Header, CardAlign, DeleteIconAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
@@ -11,12 +10,14 @@ import {
   SearchBoxAlign,
   PageCardAlign,
   BottomButtonAlign,
+  BackBtn,
 } from "../../styles/styled";
 import SearchIcon from "@material-ui/icons/Search";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 class MyCookbook extends React.Component {
   constructor(props) {
@@ -24,7 +25,6 @@ class MyCookbook extends React.Component {
     this.state = {
       recipeList: [],
       allRecipes: [],
-      myRecipeIds: [],
       userMap: {},
       search: null,
       shareWindowOpen: false,
@@ -37,7 +37,8 @@ class MyCookbook extends React.Component {
   };
 
   componentDidMount() {
-    const myid = this.props.firebase.currentUserId();
+    const { data } = this.props.location
+    let user = data;
     const userMap = {};
     const users = this.props.firebase.users();
     users.get().then((querySnapshot) => {
@@ -55,58 +56,49 @@ class MyCookbook extends React.Component {
     const recipeList = [];
     const allRecipes = [];
     const recipes = this.props.firebase.recipes();
-
-    this.props.firebase
-      .user(myid)
-      .get()
-      .then((data) => {
-        this.setState({
-          myRecipeIds: data.data().cookbook,
-        });
-        return data.data().cookbook;
-      })
-      .then((mycb) => {
-        recipes.get().then((querySnapshot) => {
-          querySnapshot.forEach((userDoc) => {
-            let recipe = {};
-            var data = userDoc.data();
-            recipe.id = userDoc.id;
-            recipe.creatorId = data.creator;
-            recipe.creatorName = this.state.userMap[data.creator].name;
-            recipe.difficulty = data.difficulty;
-            recipe.ingredients = data.ingredients;
-            recipe.instructions = data.instructions;
-            recipe.time = data.time;
-            recipe.title = data.title;
-            recipe.image = data.image;
-            allRecipes.push(recipe);
-            if (data.creator == myid || mycb.includes(userDoc.id)) {
-              recipeList.push(recipe);
-            }
-          });
-          this.setState({ recipeList: recipeList, allRecipes: allRecipes });
-        });
+    recipes.get().then((querySnapshot) => {
+      querySnapshot.forEach((userDoc) => {
+        let recipe = {};
+        var data = userDoc.data();
+        recipe.id = userDoc.id;
+        recipe.creatorId = data.creator;
+        recipe.creatorName = this.state.userMap[data.creator].name;
+        recipe.difficulty = data.difficulty;
+        recipe.ingredients = data.ingredients;
+        recipe.instructions = data.instructions;
+        recipe.time = data.time;
+        recipe.title = data.title;
+        recipe.image = data.image;
+        allRecipes.push(recipe);
+        if (data.creator == user.id) {
+          recipeList.push(recipe);
+        }
       });
+      this.setState({ recipeList: recipeList, allRecipes: allRecipes });
+    });
   }
 
   render() {
+    const { data } = this.props.location
+    let user = data;
+    console.log("user?", user);
+
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
           let originalStatus = true;
           const allRecipeCards = this.state.allRecipes
             .filter((recipe) => {
+              console.log("inidiv recipe", recipe);
+              console.log("this.state.search", this.state.search);
               if (this.state.search == null || this.state.search == "") {
-                if (
-                  recipe.creatorId == this.props.firebase.currentUserId() ||
-                  this.state.myRecipeIds.includes(recipe.id)
-                ) {
+                if (recipe.creatorId == user.id) {
                   originalStatus = true;
                   return recipe;
                 }
               }
               // if nothing is currently in searchbar, return everything
-              else if(recipe.creatorId == this.props.firebase.currentUserId()) {
+              else if(recipe.creatorId == user.id) {
                 if (
                   recipe.title
                     .toLowerCase()
@@ -150,9 +142,13 @@ class MyCookbook extends React.Component {
                   </CardAlign>
                 ))
             );
+
+          
+
           return (
             <div>
-              <Header> My Cookbook</Header>
+              <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
+              <Header> {user.name}'s Cookbook</Header>
               <SearchBoxAlign>
                 <TextField
                   placeholder={"Search your collections..."}
@@ -167,16 +163,10 @@ class MyCookbook extends React.Component {
                     ),
                   }}
                 />
-                <Link to="/addpage" style={{ textDecoration: "none" }}>
-                  <DeleteIconAlign>
-                    <AddButton labelName="+" />
-                  </DeleteIconAlign>
-                </Link>
+                
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
-              <BottomButtonAlign>
-                <SignOut />
-              </BottomButtonAlign>
+              
             </div>
           );
         }}
