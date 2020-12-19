@@ -111,16 +111,20 @@ class Firebase {
   };
 
   removeRecipe = (rid) => {
-    var uid;
-    this.recipe(rid)
-      .get()
-      .then((doc) => {
-        uid = doc.data().creator;
-      });
-    this.recipe(rid).delete();
-    this.user(uid).update({
-      cookbook: this.fieldValue.arrayRemove(rid),
-    });
+    if (rid !== -1) {
+      console.log("rid " + rid);
+      var documentId = this.db.collection("recipes").doc(rid);
+      console.log("documentId " + documentId);
+      documentId
+        .delete()
+        .then((res) => {
+          console.log("Deleted");
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.error("Error removing document: ", error);
+        });
+    }
   };
 
   saveRecipe = (uid, rid) => {

@@ -94,7 +94,7 @@ class MyCookbook extends React.Component {
     for (const id in this.state.userMap) {
       if (id == this.props.firebase.currentUserId()) {
         currentUserName = this.state.userMap[id].name;
-      }    
+      }
     }
 
     return (
@@ -113,14 +113,16 @@ class MyCookbook extends React.Component {
                 }
               }
               // if nothing is currently in searchbar, return everything
-              else if(recipe.creatorId == this.props.firebase.currentUserId()) {
+              else if (
+                recipe.creatorId == this.props.firebase.currentUserId()
+              ) {
                 if (
                   recipe.title
                     .toLowerCase()
                     .includes(this.state.search.toLowerCase())
                 ) {
                   originalStatus = false;
-                  
+
                   return recipe;
                 } else {
                   // console.log("ingredients", recipe.ingredients)
@@ -148,6 +150,7 @@ class MyCookbook extends React.Component {
                       recipe={recipe}
                       key={`${recipe.id}`}
                       index={index}
+                      creator={this.props.firebase.currentUserId()}
                     />
                   </CardAlign>
                 )) ||
