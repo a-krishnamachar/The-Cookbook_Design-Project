@@ -551,3 +551,10 @@ export const GoToDetailedRecipeView = styled.div`
   right: 0;
   text-align: center;
 `;
+
+export const FriendsCookbookBackBtn = styled.div`
+  position: fixed;
+  // background-color: purple;
+  margin-top: 10px;
+  margin-left: 10px;
+`;
