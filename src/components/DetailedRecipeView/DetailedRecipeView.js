@@ -6,10 +6,18 @@ import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 import { useHistory } from "react-router-dom";
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Divider from "@material-ui/core/Divider";
+import { AddedIngredientCard } from "../Card/AddedIngredientCard";
+import { InstructionCard } from "../Card/InstructionCard";
+import List from "@material-ui/core/List";
+import ListItemText from "@material-ui/core/ListItemText";
 
 import {
     BackBtn,
-    DetailedViewPageAlign
+    DetailedViewPageAlign,
+    DetailedViewHeaderAlign,
+    CardImage,
+    ListAlign
   } from "../../styles/styled";
 
 class DetailedRecipeView extends React.Component {
@@ -23,6 +31,73 @@ class DetailedRecipeView extends React.Component {
     //   allIngredients: {},
     // };
   }
+
+  render() {
+    // let history = useHistory();
+    const { data } = this.props.location
+    let recipe = data;
+    console.log("recipe", recipe);
+
+    return (
+      <AuthUserContext.Consumer>
+        {(authUser) => {
+          return (
+            // <AddRecipe
+            //   allIngredients={this.state.allIngredients}
+            //   firebase={this.props.firebase}
+            // />
+            
+            <div>
+                <DetailedViewHeaderAlign>
+                    <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
+                    <h1>{recipe.title}</h1>
+                </DetailedViewHeaderAlign>
+                <DetailedViewPageAlign>
+                    <CardImage src={recipe.image} />
+                    
+                    <ListAlign>
+                        <List disablePadding>
+
+                        <ListItemText primary="Ingredient" />
+
+                        {recipe.ingredients.map((ingredient, index) => (
+                            <div>
+                            <AddedIngredientCard
+                                ingredient={ingredient}
+                                key={`${ingredient.title}`}
+                            />
+                            </div>
+                        ))}
+
+                        <Divider />
+
+                        <ListItemText primary="Instructions" />
+                        {recipe.instructions.map((instruction, index) => (
+                            <div>
+                            <InstructionCard
+                                instruction={instruction}
+                                number={index}
+                                key={`${index}`}
+                            />
+                            </div>
+                        ))}
+                        </List>
+                    </ListAlign>
+                </DetailedViewPageAlign>
+            </div>
+
+          );
+        }}
+      </AuthUserContext.Consumer>
+    );
+  }
+}
+
+const condition = (authUser) => !!authUser;
+
+export default compose(withFirebase, withAuthorization(condition))(DetailedRecipeView);
+
+
 
 //   componentDidMount() {
 //     const userMap = {};
@@ -80,34 +155,3 @@ class DetailedRecipeView extends React.Component {
 // onClickBackArrow() {
 //     this.props.history.goBack()
 // }
-
-
-
-  render() {
-    // let history = useHistory();
-    return (
-      <AuthUserContext.Consumer>
-        {(authUser) => {
-          return (
-            // <AddRecipe
-            //   allIngredients={this.state.allIngredients}
-            //   firebase={this.props.firebase}
-            // />
-            
-            <div>
-                <DetailedViewPageAlign>
-                    <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn>
-                    <h1> Detailed Recipe View Title </h1>
-                </DetailedViewPageAlign>
-            </div>
-
-          );
-        }}
-      </AuthUserContext.Consumer>
-    );
-  }
-}
-
-const condition = (authUser) => !!authUser;
-
-export default compose(withFirebase, withAuthorization(condition))(DetailedRecipeView);

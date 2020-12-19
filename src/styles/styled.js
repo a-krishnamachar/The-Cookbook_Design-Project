@@ -503,11 +503,17 @@ export const BackBtn = styled(BtnNoneOutLine)`
   }
 `;
 
-export const DetailedViewPageAlign = styled.div`
+export const DetailedViewHeaderAlign = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10%;
+  margin: 5%;
+  margin-bottom: 0%;
   justify-content: center;
+`;
+
+
+export const DetailedViewPageAlign = styled.div`
+  margin-bottom: 18%;
 `;
 
 export const GoToDetailedRecipeView = styled.div`

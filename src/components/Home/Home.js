@@ -8,10 +8,22 @@ import { withFirebase } from "../Firebase";
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.goToDetailedRecipeView = this.goToDetailedRecipeView.bind(this);
     this.state = {
       recipeList: [],
       userMap: {},
     };
+  }
+
+  componentWillUnmount() {
+    // this.props.setData()
+    // console.log(recipe)
+  }
+
+  goToDetailedRecipeView(recipe) {
+    console.log("sendRecipeData 3")
+   
+    // componentWillUnmount();
   }
 
   componentDidMount() {
@@ -64,7 +76,7 @@ class Home extends React.Component {
               <Header> Home </Header>
               <CardAlign>
                 {this.state.recipeList.map((recipe) => (
-                  <Card recipe={recipe} key={`${recipe.id}`} />
+                  <Card sendData={this.goToDetailedRecipeView} recipe={recipe} key={`${recipe.id}`} />
                 ))}
               </CardAlign>
             </div>

@@ -63,7 +63,7 @@ class Card extends React.Component {
                   />
                 </GoToDetailedRecipeView>
                 <Link
-                  to="/detailedRecipeView"
+                  to={{pathname: "/detailedRecipeView", data: recipe}}
                   style={{ textDecoration: "none" }}
                 >
                   <CardImage

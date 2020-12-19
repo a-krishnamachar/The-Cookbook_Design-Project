@@ -33,7 +33,7 @@ class Navigation extends React.Component {
   render() {
     const { value } = this.state;
     return (
-      <div id="navigation-container">
+      <div id="navigation-container" style={{position: "relative", zIndex: "10"}}>
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {
