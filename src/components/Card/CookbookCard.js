@@ -20,6 +20,7 @@ import TextField from "@material-ui/core/TextField";
 import ShareIcon from "@material-ui/icons/Share";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
+import { Link } from "react-router-dom";
 
 export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
   const [hover, setHover] = React.useState(false);
@@ -97,7 +98,12 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
             onMouseLeave={() => setHover(false)}
           />
           <ColAlign>
-            <CardTitle>{recipe.title}</CardTitle>
+            <Link
+              to={{pathname: "/detailedRecipeView", data: recipe}}
+              style={{ textDecoration: "none" }}
+            >
+              <CardTitle>{recipe.title}</CardTitle>
+            </Link>
             <DescriptionAlign>
               {/* <CardText>{"56 people viewed"}</CardText> */}
               {/* <CardText>{"9 people used your recipe"}</CardText> */}
