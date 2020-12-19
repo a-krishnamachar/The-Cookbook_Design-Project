@@ -23,7 +23,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 
-export const CookbookCard = ({ recipe, index, isFriendsCookbook, creator }) => {
+export const CookbookCard = ({ recipe, index, isFriendsCookbook, creator, user }) => {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [deleteWindowOpen, setDeleteWindowOpen] = React.useState(false);
@@ -96,7 +96,7 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook, creator }) => {
           />
           <ColAlign>
             <Link
-              to={{ pathname: "/detailedRecipeView", data: recipe }}
+              to={{ pathname: "/detailedRecipeView", data: {...recipe, user: user} }}
               style={{ textDecoration: "none" }}
             >
               <CardTitle>{recipe.title}</CardTitle>
