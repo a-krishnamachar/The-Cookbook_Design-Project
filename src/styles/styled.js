@@ -108,6 +108,10 @@ export const CookbookCardIcon = styled.div`
   margin-right: 20px;
 `;
 
+export const EditPageButtonAlign = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 export const UserIconAlign = styled.div`
   color: #6c757d;
   opacity: 0.5;
@@ -492,16 +496,15 @@ export const BottomButtonAlign = styled.div`
   justify-content: flex-end;
 `;
 
-
 export const BackBtn = styled(BtnNoneOutLine)`
-  background: #FFF;
+  background: #fff;
   // height: 100%;
   margin: 0px;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   color: #000;
-  
+
   &:hover {
     opacity: 0.8;
     transform: translateY(0px);
@@ -518,7 +521,7 @@ export const AddRecipeBtn = styled(BtnNoneOutLine)`
   color: white;
   &:hover {
     opacity: 0.8;
-    background-color: #FFF;
+    background-color: #fff;
     transform: translateY(0px);
   }
 `;
@@ -537,7 +540,6 @@ export const DetailedViewHeaderAlign = styled.div`
   justify-content: center;
 `;
 
-
 export const DetailedViewPageAlign = styled.div`
   margin-bottom: 18%;
 `;
@@ -550,4 +552,14 @@ export const GoToDetailedRecipeView = styled.div`
   left: 0;
   right: 0;
   text-align: center;
+`;
+
+export const EditIngredientAlign = styled.div`
+  justify-content: flex-end;
+  margin: auto;
+  display: flex;
+`;
+
+export const EditIngredientTextAlign = styled.div`
+  margin-right: 10%;
 `;

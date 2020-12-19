@@ -107,10 +107,17 @@ export const CookbookCard = ({ recipe, index, isFriendsCookbook, creator }) => {
                 <ShareIcon onClick={() => setOpen(true)} />
               </CookbookCardIcon>
               <CookbookCardIcon>
-                {(editPermission || isFriendsCookbook) && <EditIcon />}
+                {editPermission && !isFriendsCookbook && (
+                  <Link
+                    to={{ pathname: "/editpage", data: recipe }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <EditIcon />
+                  </Link>
+                )}
               </CookbookCardIcon>
               <CookbookCardIcon>
-                {(editPermission || isFriendsCookbook) && (
+                {editPermission && !isFriendsCookbook && (
                   <DeleteOutlineIcon
                     onClick={() => setDeleteWindowOpen(true)}
                   />

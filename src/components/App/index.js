@@ -8,6 +8,8 @@ import FriendsPage from "../Friends/Friends.js";
 import SignIn from "../SignIn/SignIn.js";
 import SignUp from "../SignUp/SignUp.js";
 import AddPage from "../AddRecipe/AddPage.js";
+import EditPage from "../EditRecipe/EditPage.js";
+import Success from "../EditRecipe/Success.js";
 import DetailedRecipeView from "../DetailedRecipeView/DetailedRecipeView";
 import FriendsCookbook from "../FriendsCookbook/FriendsCookbook";
 
@@ -40,7 +42,12 @@ class App extends Component {
           <Route path={ROUTES.SIGN_IN} component={SignIn} />
           <Route path={ROUTES.SIGN_UP} component={SignUp} />
           <Route path={ROUTES.ADD_PAGE} component={AddPage} />
-          <Route path={ROUTES.DETAILED_RECIPE_VIEW} component={DetailedRecipeView} />
+          <Route path={ROUTES.EDIT_PAGE} component={EditPage} />
+          <Route path={ROUTES.SUCCESS} component={Success} />
+          <Route
+            path={ROUTES.DETAILED_RECIPE_VIEW}
+            component={DetailedRecipeView}
+          />
           <Route path={ROUTES.FRIENDS_COOKBOOK} component={FriendsCookbook} />
         </div>
       </Router>

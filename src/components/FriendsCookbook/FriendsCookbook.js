@@ -17,7 +17,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 class MyCookbook extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class MyCookbook extends React.Component {
   };
 
   componentDidMount() {
-    const { data } = this.props.location
+    const { data } = this.props.location;
     let user = data;
     const userMap = {};
     const users = this.props.firebase.users();
@@ -79,7 +79,7 @@ class MyCookbook extends React.Component {
   }
 
   render() {
-    const { data } = this.props.location
+    const { data } = this.props.location;
     let user = data;
     console.log("user?", user);
 
@@ -92,20 +92,23 @@ class MyCookbook extends React.Component {
               console.log("inidiv recipe", recipe);
               console.log("this.state.search", this.state.search);
               if (this.state.search == null || this.state.search == "") {
-                if (recipe.creatorId == user.id) {
+                if (
+                  recipe.creatorId == user.id ||
+                  user.cookbook.indexOf(recipe.id) > -1
+                ) {
                   originalStatus = true;
                   return recipe;
                 }
               }
               // if nothing is currently in searchbar, return everything
-              else if(recipe.creatorId == user.id) {
+              else if (recipe.creatorId == user.id) {
                 if (
                   recipe.title
                     .toLowerCase()
                     .includes(this.state.search.toLowerCase())
                 ) {
                   originalStatus = false;
-                  
+
                   return recipe;
                 } else {
                   // console.log("ingredients", recipe.ingredients)
@@ -145,16 +148,17 @@ class MyCookbook extends React.Component {
                 ))
             );
 
-          
-
           return (
             <div>
               {/* <BackBtn onClick={() => {this.props.history.goBack()}}> <ArrowBackIcon /></BackBtn> */}
               <Link
-                  to={{pathname: "/friends"}}
-                  style={{ textDecoration: "none" }}
-                  >
-                  <BackBtn> <ArrowBackIcon /></BackBtn>
+                to={{ pathname: "/friends" }}
+                style={{ textDecoration: "none" }}
+              >
+                <BackBtn>
+                  {" "}
+                  <ArrowBackIcon />
+                </BackBtn>
               </Link>
               <Header> {user.name}'s Cookbook</Header>
               <SearchBoxAlign>
@@ -171,10 +175,8 @@ class MyCookbook extends React.Component {
                     ),
                   }}
                 />
-                
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
-              
             </div>
           );
         }}
