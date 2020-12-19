@@ -82,7 +82,7 @@ class Search extends React.Component {
 
   render() {
     
-    
+    console.log("recipe LIST", this.state.recipeList)
 
     return (
       <AuthUserContext.Consumer>

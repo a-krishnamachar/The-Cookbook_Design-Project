@@ -11,14 +11,20 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ListItem } from "@material-ui/core";
 import AddCircleOutline from "@material-ui/icons/AddCircleOutline";
+import AddIcon from '@material-ui/icons/Add';
 import { IconAlign } from "../../styles/styled";
+import {
+  AddIconAlign,
+  AddRecipeBtn
+} from "../../styles/styled";
 
 const AddButton = (labelName) => {
   return (
     <div>
-      <IconAlign>
-        <AddCircleOutline type="button" />
-      </IconAlign>
+      <AddIconAlign>
+        {/* <AddCircleOutline type="button" /> */}
+        <AddRecipeBtn> <AddIcon /></AddRecipeBtn>
+      </AddIconAlign>
     </div>
   );
 };

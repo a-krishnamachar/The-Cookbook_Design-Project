@@ -26,7 +26,7 @@ export const InstructionCard = ({ instruction, number, isCreatingRecipe }) => {
       <IngredientCardAlign>
         <IngredientRowAlign>
           <InstructionColAlign>
-            {number}.{instruction}
+            {number}. {instruction}
           </InstructionColAlign>
           <DeleteAlign>
             <DeleteIconAlign>

@@ -64,8 +64,8 @@ export const CookbookCard = ({ recipe, index }) => {
           <ColAlign>
             <CardTitle>{recipe.title}</CardTitle>
             <DescriptionAlign>
-              <CardText>{"56 people viewed"}</CardText>
-              <CardText>{"9 people used your recipe"}</CardText>
+              {/* <CardText>{"56 people viewed"}</CardText> */}
+              {/* <CardText>{"9 people used your recipe"}</CardText> */}
             </DescriptionAlign>
             <CookbookCardIconAlign>
               <CookbookCardIcon>

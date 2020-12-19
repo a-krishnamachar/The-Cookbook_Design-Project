@@ -90,6 +90,13 @@ class MyCookbook extends React.Component {
   }
 
   render() {
+    let currentUserName = "";
+    for (const id in this.state.userMap) {
+      if (id == this.props.firebase.currentUserId()) {
+        currentUserName = this.state.userMap[id].name;
+      }    
+    }
+
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
@@ -150,9 +157,10 @@ class MyCookbook extends React.Component {
                   </CardAlign>
                 ))
             );
+
           return (
             <div>
-              <Header> My Cookbook</Header>
+              <Header> {currentUserName}'s Cookbook</Header>
               <SearchBoxAlign>
                 <TextField
                   placeholder={"Search your collections..."}

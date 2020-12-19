@@ -6,6 +6,7 @@ import {
   IngredientCardAlign,
   DeleteAlign,
   DeleteIconAlign,
+  IngredientRowText
 } from "../../styles/styled";
 import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
 
@@ -13,7 +14,9 @@ export const AddedIngredientCard = ({ ingredient, isCreatingRecipe }) => {
 
   const PossibleDeleteIcon = () => {
     if (isCreatingRecipe) {
-      return (<DeleteOutlinedIcon />);
+      return (
+      <DeleteOutlinedIcon />
+      );
     }
     else {
       return null;
@@ -25,11 +28,9 @@ export const AddedIngredientCard = ({ ingredient, isCreatingRecipe }) => {
     <div>
       <IngredientCardAlign>
         <IngredientRowAlign>
-          <IngredientColAlign>{ingredient.amount}</IngredientColAlign>
-          <IngredientColAlign>{ingredient.unit}</IngredientColAlign>
-          <IngredientColAlignForTitle>
-            {ingredient.ingredient.food}
-          </IngredientColAlignForTitle>
+          <IngredientRowText>{ingredient.amount}</IngredientRowText>
+          <IngredientRowText>{ingredient.unit}</IngredientRowText>
+          <IngredientRowText>{ingredient.ingredient.food}</IngredientRowText>
           <DeleteAlign>
             <DeleteIconAlign>
               <PossibleDeleteIcon />
