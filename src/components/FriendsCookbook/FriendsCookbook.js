@@ -133,6 +133,7 @@ class MyCookbook extends React.Component {
                       recipe={recipe}
                       key={`${recipe.id}`}
                       index={index}
+                      isFriendsCookbook={true}
                     />
                   </CardAlign>
                 )) ||

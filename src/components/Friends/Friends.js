@@ -123,7 +123,7 @@ class Friends extends React.Component {
       // console.log("this.state.currentUser", currentUser)
 
       //get friend cards
-      const allFriendCards = this.state.users.filter((user)=>{
+      let allFriendCards = this.state.users.reverse().filter((user)=>{
         if(this.state.search == null) //if nothing is currently in searchbar, return everything
             return user
         else if(user.name.toLowerCase().includes(this.state.search.toLowerCase())){
@@ -135,9 +135,11 @@ class Friends extends React.Component {
           return;
         }
 
+        const friendsList = currentUser.friends;
+        console.log("friendsList",friendsList)
         //for every user in all users, check if its a friend, 
         //   if so "Remove Friend" button, else "Add Friend" button
-        for(const friend of Object.values(currentUser.friends)) {
+        for(const friend of Object.values(friendsList)) {
           if (user.id == friend) { //if this user is your friend
             return(
               <FriendCard sendData={this.addOrRemoveFriendAlert} currentUser={currentUser} firebase={this.props.firebase} isFriend={true} user={user} key={`${user.id}` } />

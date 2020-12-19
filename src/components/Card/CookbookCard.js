@@ -21,10 +21,45 @@ import ShareIcon from "@material-ui/icons/Share";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 
-export const CookbookCard = ({ recipe, index }) => {
+export const CookbookCard = ({ recipe, index, isFriendsCookbook}) => {
   const [hover, setHover] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const url = "https://cookbook.com/recipe/" + index;
+
+  const PossibleIcons = () => {
+    if (!isFriendsCookbook) {
+      return (
+        <CookbookCardIconAlign>
+          <CookbookCardIcon>
+            <ShareIcon onClick={() => setOpen(true)} />
+          </CookbookCardIcon>
+          <CookbookCardIcon>
+            <EditIcon />
+          </CookbookCardIcon>
+          <CookbookCardIcon>
+            <DeleteOutlineIcon />
+          </CookbookCardIcon>
+      </CookbookCardIconAlign>
+      );
+    }
+    else {
+      return (
+        <CookbookCardIconAlign>
+          <CookbookCardIcon>
+            <ShareIcon onClick={() => setOpen(true)} />
+          </CookbookCardIcon>
+          <CookbookCardIcon>
+            
+          </CookbookCardIcon>
+          <CookbookCardIcon>
+            
+          </CookbookCardIcon>
+        </CookbookCardIconAlign>
+      );
+    }
+    
+  }
+
   return (
     <div>
       <Dialog
@@ -67,17 +102,7 @@ export const CookbookCard = ({ recipe, index }) => {
               {/* <CardText>{"56 people viewed"}</CardText> */}
               {/* <CardText>{"9 people used your recipe"}</CardText> */}
             </DescriptionAlign>
-            <CookbookCardIconAlign>
-              <CookbookCardIcon>
-                <ShareIcon onClick={() => setOpen(true)} />
-              </CookbookCardIcon>
-              <CookbookCardIcon>
-                <EditIcon />
-              </CookbookCardIcon>
-              <CookbookCardIcon>
-                <DeleteOutlineIcon />
-              </CookbookCardIcon>
-            </CookbookCardIconAlign>
+            <PossibleIcons />
           </ColAlign>
         </CookbookCardBody>
       </CookbookCardContainer>
