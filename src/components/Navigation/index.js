@@ -5,13 +5,10 @@ import * as ROUTES from "../../constants/routes";
 
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import GroupIcon from "@material-ui/icons/Group";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
-import PersonIcon from "@material-ui/icons/Person";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
 
 import "./navigation.css";
 
@@ -33,7 +30,10 @@ class Navigation extends React.Component {
   render() {
     const { value } = this.state;
     return (
-      <div id="navigation-container" style={{position: "relative", zIndex: "10"}}>
+      <div
+        id="navigation-container"
+        style={{ position: "relative", zIndex: "10" }}
+      >
         <BottomNavigation
           value={value}
           onChange={(event, newValue) => {
@@ -58,7 +58,7 @@ class Navigation extends React.Component {
             component={Link}
             to={ROUTES.MYCOOKBOOK}
             label="Cookbook"
-            icon={<PersonIcon />}
+            icon={<MenuBookIcon />}
           />
           <BottomNavigationAction
             component={Link}

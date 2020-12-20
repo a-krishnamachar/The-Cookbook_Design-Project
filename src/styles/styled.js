@@ -460,7 +460,6 @@ export const InstructionColAlign = styled.div`
 export const DeleteAlign = styled.div`
   float: right;
   width: 5%;
-  margin-right: 10%;
 `;
 
 export const IngredientColAlignForTitle = styled.div`
@@ -490,10 +489,9 @@ export const DeleteIconAlign = styled.div`
 
 export const BottomButtonAlign = styled.div`
   display: flex;
-  margin-top: 50px;
-  margin-right: 50px;
-  margin-bottom: 50px;
-  justify-content: flex-end;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  justify-content: space-between;
 `;
 
 export const BackBtn = styled(BtnNoneOutLine)`
@@ -568,4 +566,10 @@ export const FriendsCookbookBackBtn = styled.div`
   // background-color: purple;
   margin-top: 10px;
   margin-left: 10px;
+`;
+
+export const SignOutButtonAlign = styled.div`
+  justify-content: flex-end;
+  display: flex;
+  margin-right: 10%;
 `;

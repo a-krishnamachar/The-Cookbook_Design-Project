@@ -94,7 +94,7 @@ const SecondStep = ({
   const handleUnitChange = (event) => {
     setUnit(event.target.value);
   };
-  
+
   const handleSearch = (event) => {
     const keyword = event.target.value;
     const resultArray = [];
@@ -124,6 +124,23 @@ const SecondStep = ({
 
   return (
     <>
+      <BottomButtonAlign>
+        <BtnNoneOutLine
+          variant="contained"
+          color="default"
+          onClick={handleBack}
+          style={{ marginRight: 10 }}
+        >
+          Back
+        </BtnNoneOutLine>
+        <BtnNoneOutLine
+          variant="contained"
+          color="primary"
+          onClick={isValid ? handleNext : handleAlert}
+        >
+          Next
+        </BtnNoneOutLine>
+      </BottomButtonAlign>
       <IngredientBox>
         {ingredients.map((ingredient, index) => (
           <div onClick={() => handleOpenDelete(index)} key={`${index}`}>
@@ -240,23 +257,6 @@ const SecondStep = ({
           </Button>
         </DialogActions>
       </Dialog>
-      <BottomButtonAlign>
-        <BtnNoneOutLine
-          variant="contained"
-          color="default"
-          onClick={handleBack}
-          style={{ marginRight: 10 }}
-        >
-          Back
-        </BtnNoneOutLine>
-        <BtnNoneOutLine
-          variant="contained"
-          color="primary"
-          onClick={isValid ? handleNext : handleAlert}
-        >
-          Next
-        </BtnNoneOutLine>
-      </BottomButtonAlign>
     </>
   );
 };

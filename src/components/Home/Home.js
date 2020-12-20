@@ -1,9 +1,10 @@
 import React from "react";
 import Card from "../Card/Card";
-import { Header, CardAlign } from "../../styles/styled";
+import { Header, CardAlign, SignOutButtonAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
+import SignOut from "../SignOut/SignOut";
 
 class Home extends React.Component {
   constructor(props) {
@@ -52,8 +53,6 @@ class Home extends React.Component {
     });
   }
 
-
-
   render() {
     return (
       <AuthUserContext.Consumer>
@@ -62,6 +61,10 @@ class Home extends React.Component {
           return (
             <div>
               <Header> Home </Header>
+              <SignOutButtonAlign>
+                <SignOut />
+              </SignOutButtonAlign>
+
               <CardAlign>
                 {this.state.recipeList.map((recipe) => (
                   <Card recipe={recipe} key={`${recipe.id}`} />

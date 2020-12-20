@@ -6,7 +6,7 @@ import { Header, CardAlign, DeleteIconAlign } from "../../styles/styled";
 import { compose } from "recompose";
 import { AuthUserContext, withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
-import SignOut from "../SignOut/SignOut";
+
 import {
   SearchBoxAlign,
   PageCardAlign,
@@ -185,9 +185,6 @@ class MyCookbook extends React.Component {
                 </Link>
               </SearchBoxAlign>
               <PageCardAlign>{allRecipeCards}</PageCardAlign>
-              <BottomButtonAlign>
-                <SignOut />
-              </BottomButtonAlign>
             </div>
           );
         }}

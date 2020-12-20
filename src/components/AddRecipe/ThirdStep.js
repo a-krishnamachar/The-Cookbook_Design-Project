@@ -72,6 +72,23 @@ const ThirdStep = ({
 
   return (
     <Fragment>
+      <BottomButtonAlign>
+        <BtnNoneOutLine
+          variant="contained"
+          color="default"
+          onClick={handleBack}
+          style={{ marginRight: 10 }}
+        >
+          Back
+        </BtnNoneOutLine>
+        <BtnNoneOutLine
+          variant="contained"
+          color="primary"
+          onClick={isValid ? handleNext : handleAlert}
+        >
+          Next
+        </BtnNoneOutLine>
+      </BottomButtonAlign>
       {instructions.map((instruction, index) => (
         <div onClick={() => handleOpenDelete(index)} key={`${index}`}>
           <InstructionCard
@@ -144,6 +161,7 @@ const ThirdStep = ({
             type="text"
             fullWidth
             required
+            multiline
           />
         </DialogContent>
         <DialogActions>
@@ -159,23 +177,6 @@ const ThirdStep = ({
           </Button>
         </DialogActions>
       </Dialog>
-      <BottomButtonAlign>
-        <BtnNoneOutLine
-          variant="contained"
-          color="default"
-          onClick={handleBack}
-          style={{ marginRight: 10 }}
-        >
-          Back
-        </BtnNoneOutLine>
-        <BtnNoneOutLine
-          variant="contained"
-          color="primary"
-          onClick={isValid ? handleNext : handleAlert}
-        >
-          Next
-        </BtnNoneOutLine>
-      </BottomButtonAlign>
     </Fragment>
   );
 };
