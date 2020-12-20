@@ -22,6 +22,7 @@ import ShareIcon from "@material-ui/icons/Share";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
+import SnackbarAlert from "../SnackbarAlert/SnackbarAlert";
 
 export const CookbookCard = ({
   recipe,
@@ -31,11 +32,20 @@ export const CookbookCard = ({
   user,
 }) => {
   const [hover, setHover] = React.useState(false);
+  const [snackBarOpen, setSnackBarOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [deleteWindowOpen, setDeleteWindowOpen] = React.useState(false);
   const [deleteId, setDeleteId] = React.useState(-1);
   const url = "https://cookbook.com/recipe/" + index;
   const editPermission = recipe.creatorId === creator;
+
+  const handleOpenSnackBar = () => {
+    setSnackBarOpen(true);
+  };
+
+  const handleCloseSnackBar = () => {
+    setSnackBarOpen(false);
+  };
 
   const handleDeleteClose = () => {
     setDeleteWindowOpen(false);
@@ -49,6 +59,11 @@ export const CookbookCard = ({
   return (
     <div>
       <Delete id={deleteId} />
+      <SnackbarAlert
+        closeSnackbar={handleCloseSnackBar}
+        open={snackBarOpen}
+        message={"Copied to clickboard"}
+      />
       <Dialog
         open={deleteWindowOpen}
         onClose={handleDeleteClose}
@@ -88,7 +103,10 @@ export const CookbookCard = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)} color="primary">
-            Cancel
+            Close
+          </Button>
+          <Button onClick={handleOpenSnackBar} color="primary">
+            Copy
           </Button>
         </DialogActions>
       </Dialog>
