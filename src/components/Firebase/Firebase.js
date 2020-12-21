@@ -132,6 +132,12 @@ class Firebase {
       cookbook: this.fieldValue.arrayUnion(rid),
     });
   };
+
+  unSaveRecipe = (uid, rid) => {
+    return this.user(uid).update({
+      cookbook: this.fieldValue.arrayRemove(rid),
+    });
+  };
 }
 
 export default Firebase;

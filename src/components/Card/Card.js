@@ -11,6 +11,7 @@ import {
   UserAlign,
   UserIconAlign,
   GoToDetailedRecipeView,
+  SaveButton,
 } from "../../styles/styled";
 import CardButton from "./CardButton";
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -46,7 +47,31 @@ class Card extends React.Component {
       .saveRecipe(uid, rid)
       .then(() => this.handleClick("Recipe successfully saved"))
       .catch((err) => console.log(err));
+    this.setState({
+      saved: true
+    })
+    this.render();
   };
+
+  componentDidMount() {
+    const myid = this.props.firebase.currentUserId();
+    this.props.firebase
+      .user(myid)
+      .get()
+      .then((data) => {
+        this.setState({
+          myRecipeIds: data.data().cookbook,
+        });
+        return data.data().cookbook;
+      })
+      .then((mycb) => {
+        if (this.props.recipe.creator == myid || mycb.includes(this.props.recipe.id)) {
+          this.setState({
+            saved: true,
+          })
+        }
+      });
+  }
 
   render() {
     const recipe = this.props.recipe;
@@ -91,14 +116,10 @@ class Card extends React.Component {
                     </DescriptionAlign>
                   </RowAlign>
                 </CardBody>
-                <CardButton
-                  disabled={true}
+                <SaveButton
                   onClick={() => this.saveRecipe(uid, recipe.id)}
-                  recipeID={recipe.id}
-                  price={recipe.price}
-                  name={recipe.title}
-                  labelName={this.state.saved ? "Saved" : "Save"}
-                />
+                  style={{background: this.state.saved ? "#f55f5f" : "white"}}
+                >{this.state.saved ? "Saved" : "Save"}</SaveButton>
               </CardContainer>
               <SnackbarAlert
                 closeSnackbar={this.handleClose}

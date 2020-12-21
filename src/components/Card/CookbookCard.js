@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   CookbookCardContainer,
   CookbookCardBody,
@@ -9,6 +9,8 @@ import {
   DescriptionAlign,
   CookbookCardIconAlign,
   CookbookCardIcon,
+  SaveButton,
+  SaveButtonCookbookCard
 } from "../../styles/styled";
 import Delete from "../DeleteRecipe/Delete";
 import Dialog from "@material-ui/core/Dialog";
@@ -23,6 +25,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import { Link } from "react-router-dom";
 import SnackbarAlert from "../SnackbarAlert/SnackbarAlert";
+// import firebase from "firebase";
+function UseForceUpdate(){
+  console.log("unsaved!!!")
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue(value => ++value); // update the state to force render
+}
 
 export const CookbookCard = ({
   recipe,
@@ -30,14 +38,18 @@ export const CookbookCard = ({
   isFriendsCookbook,
   creator,
   user,
+  firebase
 }) => {
   const [hover, setHover] = React.useState(false);
   const [snackBarOpen, setSnackBarOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [deleteWindowOpen, setDeleteWindowOpen] = React.useState(false);
+  const [saved, setSaved] = React.useState(true);
   const [deleteId, setDeleteId] = React.useState(-1);
   const url = "https://cookbook.com/recipe/" + index;
   const editPermission = recipe.creatorId === creator;
+  const [value, setValue] = React.useState(0); // integer state
+  const forceUpdate = UseForceUpdate();
 
   const handleOpenSnackBar = () => {
     setSnackBarOpen(true);
@@ -56,6 +68,18 @@ export const CookbookCard = ({
     setDeleteId(recipe.id);
     handleDeleteClose();
   };
+
+  const unSaveRecipe = (rid) => {
+    firebase
+      .unSaveRecipe(creator, rid)
+      .catch((err) => console.log(err));
+    setSaved(false);
+  };
+
+  if(!saved) {
+    return null;
+  }
+
   return (
     <div>
       <Delete id={deleteId} />
@@ -150,6 +174,13 @@ export const CookbookCard = ({
                   />
                 )}
               </CookbookCardIcon>
+              <div>
+                {!editPermission && !isFriendsCookbook && (
+                  <SaveButtonCookbookCard
+                  onClick={() => unSaveRecipe(recipe.id)}
+                >Unsave</SaveButtonCookbookCard>
+                )}
+              </div>
             </CookbookCardIconAlign>
           </ColAlign>
         </CookbookCardBody>

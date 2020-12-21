@@ -12,7 +12,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 import { InstructionCard } from "../Card/InstructionCard";
-import { BtnNoneOutLine, BottomButtonAlign } from "../../styles/styled";
+import { BtnNoneOutLine, BottomButtonAlign,AlignAddInstructionBtn } from "../../styles/styled";
 
 // Destructuring props
 const ThirdStep = ({
@@ -98,6 +98,7 @@ const ThirdStep = ({
           />
         </div>
       ))}
+      <AlignAddInstructionBtn>
       <BtnNoneOutLine
         variant="contained"
         color="default"
@@ -106,6 +107,7 @@ const ThirdStep = ({
       >
         Add Instruction
       </BtnNoneOutLine>
+      </AlignAddInstructionBtn>
       <Dialog
         open={openAlert}
         onClose={handleAlertClose}

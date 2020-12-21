@@ -114,7 +114,7 @@ class MyCookbook extends React.Component {
               }
               // if nothing is currently in searchbar, return everything
               else if (
-                recipe.creatorId == this.props.firebase.currentUserId()
+                recipe.creatorId == this.props.firebase.currentUserId() 
               ) {
                 if (
                   recipe.title
@@ -151,6 +151,7 @@ class MyCookbook extends React.Component {
                       key={`${recipe.id}`}
                       index={index}
                       creator={this.props.firebase.currentUserId()}
+                      firebase={this.props.firebase}
                     />
                   </CardAlign>
                 )) ||

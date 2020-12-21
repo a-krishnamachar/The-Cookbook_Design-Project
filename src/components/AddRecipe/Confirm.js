@@ -10,6 +10,7 @@ import {
   BtnNoneOutLine,
   CardImage,
   BottomButtonAlign,
+  BtnButtonConfirmPageAlign
 } from "../../styles/styled";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -103,6 +104,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
           ))}
         </List>
       </ListAlign>
+      <BtnButtonConfirmPageAlign>
       <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
@@ -120,6 +122,7 @@ const Confirm = ({ handleNext, handleBack, values }) => {
           Confirm and Continue
         </BtnNoneOutLine>
       </BottomButtonAlign>
+      </BtnButtonConfirmPageAlign>
     </Fragment>
   );
 };

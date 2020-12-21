@@ -20,6 +20,7 @@ import {
   BtnNoneOutLine,
   IngredientBox,
   SearchBoxAlign,
+  AddRecipeSearchBoxAlign
 } from "../../styles/styled";
 import { AcUnit } from "@material-ui/icons";
 
@@ -148,7 +149,7 @@ const SecondStep = ({
           </div>
         ))}
 
-        <SearchBoxAlign>
+        <AddRecipeSearchBoxAlign>
           <TextField
             placeholder={"Search your collections..."}
             onChange={(e) => handleSearch(e)}
@@ -162,7 +163,7 @@ const SecondStep = ({
               ),
             }}
           />
-        </SearchBoxAlign>
+        </AddRecipeSearchBoxAlign>
       </IngredientBox>
       <IngredientBox>
         {searchResults.map((ingredient) => (

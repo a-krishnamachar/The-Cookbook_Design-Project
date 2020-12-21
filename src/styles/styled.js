@@ -44,7 +44,7 @@ export const BtnRed = styled(BtnDefault)`
 
 export const BtnNoneOutLine = styled.button`
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   justify-content: center;
   width: 140px;
   height: 45px;
@@ -96,6 +96,22 @@ export const IconAlign = styled.div`
 export const CookbookCardIconAlign = styled.div`
   flex-direction: row;
   display: flex;
+
+  // max-width: 170px;
+`;
+
+export const SaveButtonCookbookCard = styled(BtnNoneOutLine)`
+  // margin-bottom: 10px;
+  margin-top: -5px;
+  width: 90px;
+  height: 70%;
+  margin-left: -40px;
+  background: #f55f5f;
+  color: white;
+  &:hover {
+    color: black
+  }
+  opacity: 1;
 `;
 
 export const CookbookCardIcon = styled.div`
@@ -106,6 +122,7 @@ export const CookbookCardIcon = styled.div`
     cursor: pointer;
   }
   margin-right: 20px;
+
 `;
 
 export const EditPageButtonAlign = styled.div`
@@ -267,6 +284,9 @@ export const SaveButton = styled(BtnNoneOutLine)`
   width: 20%;
   height: 70%;
   margin-left: 15px;
+  &:hover {
+    color: black
+  }
 `;
 
 export const RowAlign = styled.div`
@@ -364,6 +384,13 @@ export const PageCardAlign = styled.div`
 export const SearchBoxAlign = styled.div`
   display: flex;
   margin: 10%;
+  justify-content: center;
+`;
+
+export const AddRecipeSearchBoxAlign = styled.div`
+  display: flex;
+  margin-top: 5%;
+  margin-bottom: -5%;
   justify-content: center;
 `;
 
@@ -490,9 +517,20 @@ export const DeleteIconAlign = styled.div`
 export const BottomButtonAlign = styled.div`
   display: flex;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
 `;
+
+export const BottomButtonAlignOneItem = styled.div`
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  justify-content: flex-end;
+  margin-right: 50px;
+`;
+
 
 export const BackBtn = styled(BtnNoneOutLine)`
   background: #fff;
@@ -563,13 +601,50 @@ export const EditIngredientTextAlign = styled.div`
 `;
 export const FriendsCookbookBackBtn = styled.div`
   position: fixed;
-  // background-color: purple;
   margin-top: 10px;
   margin-left: 10px;
 `;
 
 export const SignOutButtonAlign = styled.div`
+  // position: absolute;
   justify-content: flex-end;
   display: flex;
   margin-right: 10%;
+  margin-bottom: -30px;
+  margin-top: 5px;
+`;
+
+export const SignOutBtn = styled(BtnNoneOutLine)`
+  height: 35px;
+  width: 110px;
+`;
+
+export const DetailedViewSaveButton = styled(BtnNoneOutLine)`
+  width: 20%;
+  height: 30px;
+  margin-top: 30px;
+  margin-left: 15px;
+  background: linear-gradient(70deg, #00b31f, #00b32a);
+  &:hover {
+    color: #000;
+  }
+`;
+
+export const TitleAndSaveAlign = styled.div`
+  display: flex;
+  justify-contetn: space-between;
+  align-items: center;
+`;
+
+export const AlignAddInstructionBtn = styled.div`
+  margin-left: 33%;
+`;
+
+export const AlignUploadImageBtn = styled.div`
+margin-left: 31%;
+margin-bottom: 60px;
+`;
+
+export const BtnButtonConfirmPageAlign = styled.div`
+margin-bottom: 60px;
 `;

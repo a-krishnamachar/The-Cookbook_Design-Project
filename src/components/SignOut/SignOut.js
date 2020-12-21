@@ -1,9 +1,9 @@
 import React from "react";
-import { BtnNoneOutLine } from "../../styles/styled";
+import { SignOutBtn } from "../../styles/styled";
 import { withFirebase } from "../Firebase";
 
 const SignOutButton = ({ firebase }) => (
-  <BtnNoneOutLine onClick={firebase.doSignOut}>Sign Out</BtnNoneOutLine>
+  <SignOutBtn onClick={firebase.doSignOut}>Sign Out</SignOutBtn>
 );
 
 export default withFirebase(SignOutButton);

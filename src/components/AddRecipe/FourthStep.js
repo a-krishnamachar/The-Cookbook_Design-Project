@@ -10,6 +10,7 @@ import {
   BtnNoneOutLine,
   CardImage,
   BottomButtonAlign,
+  AlignUploadImageBtn
 } from "../../styles/styled";
 
 const FourthStep = ({
@@ -103,14 +104,7 @@ const FourthStep = ({
           </Button>
         </DialogActions>
       </Dialog>
-      <BtnNoneOutLine
-        variant="contained"
-        color="default"
-        onClick={handleUpload}
-      >
-        Upload Image
-      </BtnNoneOutLine>
-
+      
       <BottomButtonAlign>
         <BtnNoneOutLine
           variant="contained"
@@ -128,6 +122,17 @@ const FourthStep = ({
           Next
         </BtnNoneOutLine>
       </BottomButtonAlign>
+      <AlignUploadImageBtn>
+    
+      <BtnNoneOutLine
+        variant="contained"
+        color="default"
+        onClick={handleUpload}
+      >
+        Upload Image
+      </BtnNoneOutLine>
+
+      </AlignUploadImageBtn>
     </Fragment>
   );
 };

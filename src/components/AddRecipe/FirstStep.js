@@ -4,6 +4,7 @@ import {
   BtnNoneOutLine,
   TitleAlign,
   BottomButtonAlign,
+  BottomButtonAlignOneItem
 } from "../../styles/styled";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -62,7 +63,7 @@ const FirstStep = ({
           required
         />
       </TitleAlign>
-      <BottomButtonAlign>
+      <BottomButtonAlignOneItem>
         <BtnNoneOutLine
           variant="contained"
           color="primary"
@@ -70,7 +71,7 @@ const FirstStep = ({
         >
           Next
         </BtnNoneOutLine>
-      </BottomButtonAlign>
+      </BottomButtonAlignOneItem>
     </Fragment>
   );
 };

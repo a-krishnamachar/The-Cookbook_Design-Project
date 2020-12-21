@@ -60,10 +60,11 @@ class Home extends React.Component {
           console.log("in here");
           return (
             <div>
-              <Header> Home </Header>
               <SignOutButtonAlign>
                 <SignOut />
               </SignOutButtonAlign>
+              <Header> Home </Header>
+              
 
               <CardAlign>
                 {this.state.recipeList.map((recipe) => (

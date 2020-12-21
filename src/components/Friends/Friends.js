@@ -129,27 +129,45 @@ class Friends extends React.Component {
       // console.log("this.state.currentUser", currentUser)
 
       //get friend cards
-      let allFriendCards = allUsers.filter((user)=>{
+      const yourFriendCards = [];
+      let nonFriendCards = allUsers.filter((user)=>{
         if(this.state.search == null) //if nothing is currently in searchbar, return everything
             return user
         else if(user.name.toLowerCase().includes(this.state.search.toLowerCase())){
             return user
         } 
         //else{} not a match, don't return
-      }).map(user=>{
+      })
+      .sort(function(a, b) { //sort alphabetically
+        console.log("a.name", a.name)
+        var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+        var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      
+        // names must be equal
+        return 0;
+      })
+      .map(user=>{
         if (user.id == currentUser.id) { //don't make a friend card for yourself
           return;
         }
 
         const friendsList = currentUser.friends;
-        console.log("friendsList",friendsList)
+        // console.log("friendsList",friendsList)
         //for every user in all users, check if its a friend, 
         //   if so "Remove Friend" button, else "Add Friend" button
+        
         for(const friend of Object.values(friendsList)) {
           if (user.id == friend) { //if this user is your friend
-            return(
+            yourFriendCards.push(
               <FriendCard sendData={this.addOrRemoveFriendAlert} currentUser={currentUser} firebase={this.props.firebase} isFriend={true} user={user} key={`${user.id}` } />
             )
+            return null;
           }
         };
         
@@ -157,6 +175,29 @@ class Friends extends React.Component {
           <FriendCard sendData={this.addOrRemoveFriendAlert} currentUser={currentUser} firebase={this.props.firebase} isFriend={false} user={user} key={`${user.id}` } />
         )
       })
+      // .sort(function(a, b){
+      //   if(a.firstname < b.firstname) { return -1; }
+      //   if(a.firstname > b.firstname) { return 1; }
+      //   return 0;
+      // });
+
+      // nonFriendCards.sort(function(a, b) {
+      //   console.log("a", a)
+      //   var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      //   var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      //   if (nameA < nameB) {
+      //     return -1;
+      //   }
+      //   if (nameA > nameB) {
+      //     return 1;
+      //   }
+      
+      //   // names must be equal
+      //   return 0;
+      // });
+      
+      // yourFriendCards.sort((a, b) => a.name.localeCompare(b.name))
+    
 
       let alert = null;
       if (this.state.alert.alert) {
@@ -199,7 +240,8 @@ class Friends extends React.Component {
                   />
                 
                   <PageCardAlign>
-                    {allFriendCards}
+                  {yourFriendCards}
+                    {nonFriendCards}
                   </PageCardAlign>
                 </PageAlign>
               </div>

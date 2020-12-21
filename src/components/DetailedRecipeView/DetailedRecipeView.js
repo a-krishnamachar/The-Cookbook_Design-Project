@@ -12,6 +12,8 @@ import { InstructionCard } from "../Card/InstructionCard";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
+import SnackbarAlert from "../SnackbarAlert/SnackbarAlert";
+import CardButton from "../Card/CardButton";
 
 import {
   BackBtn,
@@ -19,11 +21,56 @@ import {
   DetailedViewHeaderAlign,
   CardImage,
   ListAlign,
+  DetailedViewSaveButton,
+  DetailedViewSavedButton,
+  TitleAndSaveAlign
 } from "../../styles/styled";
 
 class DetailedRecipeView extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+      snackbarMessage: "",
+      saved: false,
+    };
+  }
+  handleClick = (message) =>
+    this.setState({ open: true, snackbarMessage: message });
+  handleClose = (event, reason) =>
+    reason === "clickaway" ? null : this.setState({ open: false });
+
+  saveRecipe = (uid, rid) => {
+    this.props.firebase
+      .saveRecipe(uid, rid)
+      .then(() => this.handleClick("Recipe successfully saved"))
+      .catch((err) => console.log(err));
+    this.setState({
+      saved:true
+    })
+    this.render();
+  };
+
+  componentDidMount() {
+    let { data } = this.props.location;
+    let recipe = data;
+    const myid = this.props.firebase.currentUserId();
+    this.props.firebase
+      .user(myid)
+      .get()
+      .then((data) => {
+        this.setState({
+          myRecipeIds: data.data().cookbook,
+        });
+        return data.data().cookbook;
+      })
+      .then((mycb) => {
+        if (recipe.creator == myid || mycb.includes(recipe.id)) {
+          this.setState({
+            saved: true,
+          })
+        }
+      });
   }
 
   render() {
@@ -78,15 +125,23 @@ class DetailedRecipeView extends React.Component {
         }
       }
     };
-
+  
     return (
       <AuthUserContext.Consumer>
         {(authUser) => {
+          const uid = authUser.uid;
           return (
             <div>
               <DetailedViewHeaderAlign>
                 <BackButton />
-                <h1>{recipe.title}</h1>
+                <TitleAndSaveAlign>
+                  <h1>{recipe.title}</h1>
+                  <DetailedViewSaveButton 
+                    onClick={() => this.saveRecipe(uid, recipe.id)} 
+                    style={{background: this.state.saved ? "#f55f5f" : "white"}}>
+                      {this.state.saved ? "Saved" : "Save"}
+                  </DetailedViewSaveButton>  
+                </TitleAndSaveAlign>
               </DetailedViewHeaderAlign>
 
               <DetailedViewPageAlign>
@@ -122,6 +177,11 @@ class DetailedRecipeView extends React.Component {
                   </List>
                 </ListAlign>
               </DetailedViewPageAlign>
+              <SnackbarAlert
+                closeSnackbar={this.handleClose}
+                open={this.state.open}
+                message={this.state.snackbarMessage}
+              />
             </div>
           );
         }}
